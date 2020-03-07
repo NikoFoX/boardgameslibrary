@@ -1,22 +1,25 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 
-const morgan = require('morgan')
-const MongoClient = require('mongodb').MongoClient
+const morgan = require("morgan");
+const MongoClient = require("mongodb").MongoClient;
 
-app.use(new morgan('common'))
+app.use(new morgan("common"));
 
-MongoClient.connect('mongodb://localhost:27017/boardgameslibrary', { useUnifiedTopology: true }, function (err, client) {
-    if (err) throw err
+MongoClient.connect(
+  "mongodb://localhost:27017/boardgameslibrary",
+  { useUnifiedTopology: true },
+  function(err, client) {
+    if (err) throw err;
 
-    var db = client.db('boardgameslibrary')
-    
-    app.get('/', (req, res) => {
-        res.send('Initial backend response.');
+    var db = client.db("boardgameslibrary");
+
+    app.get("/", (req, res) => {
+      res.send("Initial backend response.");
     });
-    
-    app.listen(3000, function() {
-        console.log('listening on 3000')
-    })
-})
 
+    app.listen(3000, function() {
+      console.log("listening on 3000");
+    });
+  }
+);
