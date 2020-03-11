@@ -22,16 +22,32 @@
         <v-avatar color="red">USER</v-avatar>
       </template>
       <template v-else>
-        <a class="text-white" @click="loginDialog = true">Log in</a>
+        <v-dialog v-model="loginDialog" max-width="500px" hide-overlay>
+          <template v-slot:activator="{ on }">
+            <a class="text-white login" v-on="on">Log in</a>
+          </template>
+          <v-container grid-list-xs>
+            <v-text-field
+              prefix=" "
+              placeholder="Login"
+              autofocus
+              prepend-inner-icon="fas fa-sign-in-alt"
+              v-model="username"
+              clearable
+              light
+            ></v-text-field>
+            <v-text-field
+              prepend-inner-icon="fas fa-lock"
+              v-model="password"
+              placeholder="Password"
+              clearable
+              light
+            ></v-text-field>
+            <v-btn block color="primary" dark>LOGIN</v-btn>
+          </v-container>
+        </v-dialog>
       </template>
     </v-app-bar>
-
-    <v-dialog
-      v-model="loginDialog"
-      :overlay="false"
-      max-width="500px"
-      transition="dialog-transition"
-    ></v-dialog>
 
     <v-content>
       <HelloWorld />
@@ -52,7 +68,9 @@ export default {
   data: () => ({
     drawer: true,
     loginDialog: false,
-    user: false
+    user: false,
+    username: "",
+    password: ""
   }),
   methods: {
     logout() {
@@ -60,7 +78,15 @@ export default {
     },
     logIn() {
       console.log("Will login");
+      console.log();
     }
   }
 };
 </script>
+
+<style lang="scss">
+.login {
+  font-weight: bold;
+  text-decoration: underline !important;
+}
+</style>
