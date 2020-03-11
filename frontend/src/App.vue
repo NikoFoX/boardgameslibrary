@@ -1,32 +1,66 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
+      </div>
+      <v-spacer></v-spacer>
+      <template v-if="user">
+        <div>
+          <span class="mr-2">Logged: User</span>
+          <div>
+            <a class="text-white" @click="logout()">Logout</a>
+          </div>
+        </div>
+        <v-avatar color="red">USER</v-avatar>
+      </template>
+      <template v-else>
+        <a class="text-white" @click="loginDialog = true">Log in</a>
+      </template>
+    </v-app-bar>
+
+    <v-dialog
+      v-model="loginDialog"
+      :overlay="false"
+      max-width="500px"
+      transition="dialog-transition"
+    ></v-dialog>
+
+    <v-content>
+      <HelloWorld />
+    </v-content>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import HelloWorld from "./components/HelloWorld";
 
-#nav {
-  padding: 30px;
+export default {
+  name: "App",
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  components: {
+    HelloWorld
+  },
 
-    &.router-link-exact-active {
-      color: #42b983;
+  data: () => ({
+    drawer: true,
+    loginDialog: false,
+    user: false
+  }),
+  methods: {
+    logout() {
+      console.log("Will logout");
+    },
+    logIn() {
+      console.log("Will login");
     }
   }
-}
-</style>
+};
+</script>
