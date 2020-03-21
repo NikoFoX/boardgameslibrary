@@ -1,9 +1,16 @@
 module.exports = {
-  "pluginOptions": {
-    "quasar": {}
+  'transpileDependencies': ['vuetify'],
+  publicPath: 'http://localhost:8080',
+  devServer: {
+    host: 'localhost',
+    port: '8080',
+    proxy: 'http://localhost:3000'
   },
-  "transpileDependencies": [
-    "quasar",
-    "vuetify"
-  ]
+  productionSourceMap: true,
+  // css: {
+  // sourceMaps: true
+  // },
+  configureWebpack: {
+    devtool: 'source-map'
+  }
 }
