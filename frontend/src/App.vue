@@ -26,7 +26,7 @@
 						<a class="text-white" @click="logout()">Logout</a>
 					</div>
 				</div>
-				<v-avatar color="red">USER</v-avatar>
+				<v-avatar color="red">{{ user.initials }}</v-avatar>
 			</template>
 			<template v-else>
 				<v-dialog v-model="loginDialog" max-width="500px" hide-overlay>

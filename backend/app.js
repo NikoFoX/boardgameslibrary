@@ -42,11 +42,16 @@ db.once('open', async function() {
 		username: String
 	})
 
-	userSchema.methods.initials = function() {
+	// INITIALS AS INSTANCE METHOD
+	userSchema.methods.get_initials = function() {
 		let initials = this.name[0] + this.lastName[0]
-		console.log(`${this.name} ${this.lastName} - ${initials}`)
 		return initials
 	}
+
+	// INITIALS AS INSTANCE PROPERTY
+	userSchema.virtual('initials').get(function() {
+		return this.name[0] + this.lastName[0]
+	})
 
 	let User = mongoose.model('User', userSchema)
 
@@ -55,7 +60,11 @@ db.once('open', async function() {
 		lastName: 'Snow',
 		username: 'john'
 	})
-	john.initials() // USE VIRTUALS
+
+	// Calling object instance method get_initials()
+	console.log(john.get_initials())
+	// Getting object instance virtual property initials
+	console.log(john.initials)
 
 	app.get('/', (req, res) => {
 		res.send('Initial backend response.')
@@ -67,9 +76,9 @@ db.once('open', async function() {
 			console.log(`Login request from ${req.body.username}`)
 			const foundUser = await User.findOne({
 				username: req.body.username
-			}).lean()
+			})
 			if (foundUser) {
-				res.send(foundUser)
+				res.send(foundUser.toJSON({ virtuals: true }))
 			} else {
 				res.status(404).send('User not found')
 			}
