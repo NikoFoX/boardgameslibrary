@@ -9,9 +9,9 @@ import axios from './axios'
 Vue.config.productionTip = false
 
 new Vue({
-  router,
-  axios,
-  store,
-  vuetify,
-  render: h => h(App)
+	router,
+	store,
+	axios,
+	vuetify,
+	render: h => h(App)
 }).$mount('#app')

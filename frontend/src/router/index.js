@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // components
-import Home from '@/components/Home'
 import Account from '@/components/Account'
+import Login from '@/views/login'
 
 Vue.use(VueRouter)
 
 const routes = [
 	{
 		path: '/',
-		name: 'Home',
-		component: Home
+		name: 'Login',
+		component: Login
 	},
 	{
 		path: '/account',
@@ -30,5 +30,12 @@ const routes = [
 const router = new VueRouter({
 	routes
 })
+
+// $router.push() overwrite to catch all errors when navigation is aborted
+// (due to eg. NavigationDuplicated error when app navigates to actual view)
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function(location) {
+	return originalPush.call(this, location).catch(err => err)
+}
 
 export default router
