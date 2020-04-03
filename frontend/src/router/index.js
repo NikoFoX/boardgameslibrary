@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 // components
 import Account from '@/components/Account'
 import Login from '@/views/login'
+import Library from '@/views/library'
 
 Vue.use(VueRouter)
 
@@ -11,6 +12,11 @@ const routes = [
 		path: '/',
 		name: 'Login',
 		component: Login
+	},
+	{
+		path: '/library',
+		name: 'Library',
+		component: Library
 	},
 	{
 		path: '/account',

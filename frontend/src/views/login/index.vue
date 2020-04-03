@@ -55,6 +55,7 @@ export default {
 				loginData: loginData,
 				onSuccess: () => {
 					this.loginDialog = false
+					this.$router.push({ name: 'Library' })
 				}
 			})
 		}
