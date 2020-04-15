@@ -7,7 +7,7 @@ import mutations from './mutations'
 Vue.use(Vuex)
 
 const initialStoreState = {
-	user: null,
+	user: {},
 	errors: {}
 }
 

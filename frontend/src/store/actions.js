@@ -7,9 +7,14 @@ const login = async ({ commit }, data) => {
 		const response = await axios.post('/login', loginData)
 		commit('SETUSER', response.data)
 		if (onSuccess) onSuccess()
+		commit('CLEARERROR')
 	} catch (error) {
-		if (error.response.status === 404) {
+		if (error.response && [(400, 404)].includes(error.response.status)) {
 			commit('SETERROR', { loginError: "Login or password don't match." })
+		} else {
+			commit('SETERROR', {
+				loginConnectionError: 'Problems connecting with database.'
+			})
 		}
 	}
 }

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
 // components
 import Account from '@/components/Account'
 import Login from '@/views/login'
@@ -11,7 +12,12 @@ const routes = [
 	{
 		path: '/',
 		name: 'Login',
-		component: Login
+		component: Login,
+		beforeEnter: (to, from, next) => {
+			console.log(store.getters.userLogged)
+			if (store.getters.userLogged) next('/library')
+			else next()
+		}
 	},
 	{
 		path: '/library',
