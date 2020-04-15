@@ -14,7 +14,7 @@ const SETUSER = (state, userData) => {
 }
 
 const LOGOUT = state => {
-	state.user = null
+	state.user = {}
 	sessionStorage.setItem('user', '')
 }
 

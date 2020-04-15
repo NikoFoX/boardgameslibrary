@@ -14,7 +14,6 @@ const routes = [
 		name: 'Login',
 		component: Login,
 		beforeEnter: (to, from, next) => {
-			console.log(store.getters.userLogged)
 			if (store.getters.userLogged) next('/library')
 			else next()
 		}

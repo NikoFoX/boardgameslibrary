@@ -21,7 +21,7 @@ const login = async ({ commit }, data) => {
 
 const logout = async ({ commit }) => {
 	commit('LOGOUT')
-	router.push({ name: 'Home' })
+	router.push({ name: 'Login' })
 }
 
 export default {
