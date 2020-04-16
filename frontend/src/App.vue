@@ -1,10 +1,10 @@
 <template>
   <v-app>
     <MainMenu />
-    <v-content class>
+    <v-content>
       <v-container fluid class="content" grid-list-xs>
         <router-view :key="$route.path" />
-        <v-snackbar color="success" :value="!!user" :timeout="3000" bottom>
+        <v-snackbar color="success" :value="userLogged" :timeout="3000" bottom>
           <span class>Succesfully logged in</span>
         </v-snackbar>
       </v-container>
@@ -21,11 +21,9 @@ export default {
   components: {
     MainMenu
   },
-  data: () => ({
-    drawer: true
-  }),
+  data: () => ({}),
   computed: {
-    ...mapGetters(["errors", "user"])
+    ...mapGetters(["errors", "user", "userLogged"])
   },
   methods: {
     ...mapMutations(["CLEARERROR", "SETUSER"]),

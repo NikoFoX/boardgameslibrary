@@ -14,8 +14,11 @@ const routes = [
 		name: 'Login',
 		component: Login,
 		beforeEnter: (to, from, next) => {
-			if (store.getters.userLogged) next('/library')
-			else next()
+			if (sessionStorage.getItem('user')) {
+				next('/library')
+			} else {
+				next()
+			}
 		}
 	},
 	{

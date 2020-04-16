@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <h3>Board Games Library</h3>
     <v-card raised class="login-card">
       <v-alert
         v-if="errors.loginError"
