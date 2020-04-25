@@ -1,91 +1,44 @@
 <template>
-	<div class="library">
-		<v-card>
-			<v-card-title primary-title>
-				Recently played games
-			</v-card-title>
-			<v-expansion-panels popout>
-				<v-expansion-panel v-for="(game, i) in gamesPlayed" :key="i">
-					<v-expansion-panel-header>
-						<span>
-							<v-chip
-								x-small
-								:color="game.result === 'Won' ? 'success' : 'red darken-1'"
-								text-color="primary"
-							>
-								{{ game.result }}
-							</v-chip>
-							{{ game.name }}
-						</span>
-					</v-expansion-panel-header>
-					<v-expansion-panel-content>
-						<v-row no-gutters v-if="game.points.length > 0">
-							<v-col class="text-center">
-								{{ game.points[0] }} : {{ game.points[1] }}
-							</v-col>
-						</v-row>
-						<v-row no-gutters>
-							<v-col>
-								<span v-if="game.team.length > 0"
-									>Team: {{ game.team.join(', ') }}
-								</span>
-							</v-col>
-							<v-col
-								><span class="float-right">
-									<v-badge left color="primary" class="mr-5">
-										<span slot="badge">VS</span>
-									</v-badge>
-									{{ game.opponent.join(', ') }}
-								</span>
-							</v-col>
-						</v-row>
-					</v-expansion-panel-content>
-				</v-expansion-panel>
-			</v-expansion-panels>
-		</v-card>
-	</div>
+  <div>
+    <v-container grid-list-xs>
+      <v-row justify-start>
+        <v-col cols="auto" v-for="game in library" :key="game.id">
+          <v-card max-width="250" elevation="10">
+            <v-card-title primary-title>{{ game.name }}</v-card-title>
+            <v-card-text>
+              <v-img :src="game.cover" max-width="200" contain alt="Image here"></v-img>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
 export default {
-	name: 'Library',
-	data: () => ({
-		gamesPlayed: [
-			{
-				id: 1,
-				name: 'Pandemic Legacy',
-				result: 'Won',
-				points: [],
-				team: ['Kima'],
-				opponent: ['Game'],
-				scenario: 'March'
-			},
-			{
-				id: 2,
-				name: 'Neuroshima Hex',
-				result: 'Lost',
-				points: [30, 20],
-				team: [],
-				opponent: ['Jacob'],
-				scenario: ''
-			},
-			{
-				id: 3,
-				name: 'Arkham Horror',
-				result: 'Lost',
-				points: [],
-				team: ['Kima', 'Adam'],
-				opponent: ['Game'],
-				scenario: 'Coming of Cthulu'
-			}
-		]
-	})
-}
+  name: "Library",
+  data: () => ({
+    library: [
+      {
+        id: 1,
+        name: "Pandemic",
+        cover:
+          "https://cf.geekdo-images.com/imagepage/img/3mRLkaz_shArWqExOXUS59cQowY=/fit-in/900x600/filters:no_upscale()/pic1534148.jpg",
+        bggLink: "https://boardgamegeek.com/boardgame/30549/pandemic"
+      },
+      {
+        id: 2,
+        name: "Arkham Horror 3rd Ed",
+        cover:
+          "https://cf.geekdo-images.com/imagepage/img/KnbBZ6ioy7OfhM7d0ZsQMm11tII=/fit-in/900x600/filters:no_upscale()/pic4582151.jpg",
+        bggLink:
+          "https://boardgamegeek.com/boardgame/257499/arkham-horror-third-edition"
+      }
+    ]
+  })
+};
 </script>
 
 <style lang="scss" scoped>
-.library {
-}
-.gameResultChip {
-}
 </style>
