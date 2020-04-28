@@ -6,6 +6,7 @@ import Account from '@/components/Account'
 import Login from '@/views/login'
 import Library from '@/views/library'
 import Home from '@/views/home'
+import GameDetails from '@/views/library/components/GameDetails'
 
 Vue.use(VueRouter)
 
@@ -31,6 +32,12 @@ const routes = [
 		path: '/library',
 		name: 'Library',
 		component: Library,
+	},
+	{
+		path: '/library/:id',
+		name: 'GameDetails',
+		component: GameDetails,
+		props: true,
 	},
 	{
 		path: '/account',

@@ -41,6 +41,6 @@ export default {
 .content {
   width: 100%;
   height: 100%;
-  background: rgb(127, 214, 185);
+  background: rgba(52, 60, 165, 0.664);
 }
 </style>

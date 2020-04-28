@@ -13,7 +13,7 @@ const login = async ({ commit }, data) => {
 			commit('SETERROR', { loginError: "Login or password don't match." })
 		} else {
 			commit('SETERROR', {
-				loginConnectionError: 'Problems connecting with database.'
+				loginConnectionError: 'Problems connecting with database.',
 			})
 		}
 	}
@@ -24,7 +24,16 @@ const logout = async ({ commit }) => {
 	router.push({ name: 'Login' })
 }
 
+const getGameDetails = async ({ commit }, gameId) => {
+	try {
+		const response = await axios.get('/gameDetails', gameId)
+	} catch (error) {
+		console.log('error')
+		console.log(error)
+	}
+}
+
 export default {
 	login,
-	logout
+	logout,
 }

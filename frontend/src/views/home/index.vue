@@ -45,6 +45,7 @@ export default {
     gamesPlayed: [
       {
         id: 1,
+        played: "2020-04-04 13:28",
         name: "Pandemic Legacy",
         result: "Won",
         points: [],
@@ -54,6 +55,7 @@ export default {
       },
       {
         id: 2,
+        played: "2020-04-11 13:28",
         name: "Neuroshima Hex",
         result: "Lost",
         points: [30, 20],
@@ -63,6 +65,7 @@ export default {
       },
       {
         id: 3,
+        played: "2020-04-12 13:28",
         name: "Arkham Horror",
         result: "Lost",
         points: [],
