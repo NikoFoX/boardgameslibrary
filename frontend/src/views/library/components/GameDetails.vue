@@ -6,30 +6,26 @@
         <v-icon>far fa-edit</v-icon>
       </v-btn>
     </v-alert>
-
     <v-card class="mb-5">
       <v-card-text class="text-dark h1">
-        <div>Played: {{ game.played }}</div>
+        <div>Total matches: {{ game.played }}</div>
         <div>Wins: {{ game.wins }}</div>
         <div>Loses: {{ game.loses }}</div>
+        <div>Draw: {{ game.draw }}</div>
+        <div>Not finished: {{ game.notFinished }}</div>
       </v-card-text>
-      <!-- <v-card-actions>
-        <v-btn color="success" @click="openNewGameDialog()">
-          <v-icon class="mr-3">fas fa-plus</v-icon>Add new game
-        </v-btn>
-      </v-card-actions>-->
     </v-card>
     <v-timeline :dense="['xs', 'sm'].includes($vuetify.breakpoint.name)">
       <v-timeline-item fillDot small>
         <template v-slot:icon>
-          <v-btn small fab color="success" @click="openNewGameDialog()">
+          <v-btn small fab color="success" id="icon-1">
             <i class="fas fa-plus"></i>
           </v-btn>
         </template>
         <v-btn
           :block="['xs'].includes($vuetify.breakpoint.name)"
           color="success"
-          @click="openNewGameDialog()"
+          id="button-1"
         >Add new game</v-btn>
       </v-timeline-item>
       <v-timeline-item
@@ -68,20 +64,27 @@
         </v-card>
       </v-timeline-item>
     </v-timeline>
+    <EditMatchModal></EditMatchModal>
   </div>
 </template>
 
 <script>
+import EditMatchModal from "./EditMatchModal";
+
 export default {
   name: "GameDetails",
+  components: { EditMatchModal },
   props: ["id"],
   data: () => ({
+    dialog: false,
     game: {
       id: 1,
       title: "Arkham Horror 3ed",
       played: 5,
       wins: 3,
       loses: 2,
+      draw: 1,
+      notFinished: 3,
       rating: "4.45",
       games: [
         {
