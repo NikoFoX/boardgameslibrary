@@ -1,15 +1,21 @@
 <template>
   <v-layout row justify-center>
-    <v-dialog v-model="dialog" max-width="500px" activator="#icon-1, #button-1">
+    <v-dialog
+      v-model="dialog"
+      scrollable
+      fullscreen
+      max-width="500px"
+      activator="#icon-1, #button-1"
+    >
       <v-card>
         <v-card-title>
           <span class="headline">Add new match</span>
         </v-card-title>
         <v-btn-toggle mandatory v-model="result" tile class="w-100 justify-center">
-          <v-btn color="success">Win</v-btn>
-          <v-btn color="red">Loss</v-btn>
-          <v-btn color="warning">Draw</v-btn>
-          <v-btn color="info">Other</v-btn>
+          <v-btn outlined color="success">Win</v-btn>
+          <v-btn outlined color="red">Loss</v-btn>
+          <v-btn outlined color="warning">Draw</v-btn>
+          <v-btn outlined color="info">Other</v-btn>
         </v-btn-toggle>
         <v-card-text class="mt-3">
           <v-row no-gutters>
@@ -20,7 +26,6 @@
               <!-- TODO: Turn off html-like number controls for inc/dec numbers -->
               <v-text-field
                 v-if="pointsMatch"
-                filled
                 type="number"
                 v-model="points"
                 prepend-inner-icon="fas fa-minus-circle"
@@ -37,7 +42,6 @@
                 label="Team"
                 chips
                 hide-details
-                filled
                 deletable-chips
                 multiple
                 hide-selected
@@ -60,7 +64,6 @@
                     chips
                     deletable-chips
                     multiple
-                    filled
                     hide-selected
                     hide-details
                     v-model="opponent.team"
@@ -71,7 +74,6 @@
                 <v-col cols="12" md="6" v-if="pointsMatch && opponent.team.length > 0">
                   <v-text-field
                     :label="'Opponent '+(index+1)+' points'"
-                    filled
                     type="number"
                     hide-details
                     v-model="opponent.points"
@@ -93,7 +95,6 @@
                 v-if="scenarioMatch"
                 label="Scenario"
                 hide-details
-                filled
                 v-model="scenario"
                 :items="scenarios"
               ></v-combobox>
@@ -101,8 +102,8 @@
           </v-row>
         </v-card-text>
         <v-card-actions>
-          <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click.native="dialog = false">Close</v-btn>
+          <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click.native="dialog = false">Save</v-btn>
         </v-card-actions>
       </v-card>
@@ -120,9 +121,10 @@ export default {
     opponentsMatch: true,
     opponents: [{ team: ["Jacob", "Kima"], points: "0" }],
     result: false,
-    points: 0,
     pointsMatch: false,
+    points: 0,
     scenarioMatch: false,
+    scenario: "",
     // Below are computed lists, which came as choosable options from backend
     players: ["Jacob", "Kima", "Adam"],
     scenarios: ["Revenge of Thal'Ak", "Coming of Cthulu"],
