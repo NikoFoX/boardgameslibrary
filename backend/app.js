@@ -1,61 +1,50 @@
-const express = require('express')
+import express from 'express'
 const app = express()
-const morgan = require('morgan')
-const cors = require('cors')
-const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
-const asyncHandler = require('express-async-handler')
+import morgan from 'morgan'
+import cors from 'cors'
+import { json } from 'body-parser'
 
 // CORS
-const whitelist = ['http://localhost:8080']
-const corsOptions = {
-	origin: function(origin, callback) {
-		if (whitelist.indexOf(origin) !== -1) {
-			callback(null, true)
-		} else {
-			callback(new Error('Not allowed by CORS'))
-		}
-	}
-}
-app.use(bodyParser.json())
-app.use(cors(corsOptions))
+// const whitelist = ['http://localhost:3000', 'http://localhost:8080']
+// const corsOptions = {
+// 	origin: (origin, callback) => {
+// 		console.log(origin)
+// 		if (whitelist.indexOf(origin) !== -1) {
+// 			callback(null, true)
+// 		} else {
+// 			callback(new Error('Not allowed by CORS'))
+// 		}
+// 	}
+// }
+app.use(json())
+app.use(cors())
 
-app.use(new morgan('common'))
+app.use(new morgan('dev'))
 
 // MONGOOSE MONGODB
-mongoose.connect('mongodb://localhost:27017/boardgameslibrary', {
-	useNewUrlParser: true,
-	useUnifiedTopology: true
-})
-let db = mongoose.connection
+import db from './db'
+db.mongoose
+	.connect(db.url, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true
+	})
+	.then(() => {
+		console.log('DB connected')
+	})
+	.catch((error) => {
+		console.log('Problem connecting to database', error)
+		process.exit()
+	})
+
+// ATTACH ROUTES
+import router from './routes'
+app.use(router)
 
 // REMOVE IN PRODUCTION
-db.dropDatabase()
-
-db.on('error', console.error.bind(console, 'connection error:'))
-db.once('open', async function() {
-	// we're connected!
-
-	let userSchema = new mongoose.Schema({
-		name: String,
-		lastName: String,
-		username: String
-	})
-
-	// INITIALS AS INSTANCE METHOD
-	userSchema.methods.get_initials = function() {
-		let initials = this.name[0] + this.lastName[0]
-		return initials
-	}
-
-	// INITIALS AS INSTANCE PROPERTY
-	userSchema.virtual('initials').get(function() {
-		return this.name[0] + this.lastName[0]
-	})
-
-	let User = mongoose.model('User', userSchema)
-
-	let john = await User.create({
+db.mongoose.connection.dropDatabase()
+db.mongoose.connection.once('open', async function () {
+	// Creating John Snow user
+	let john = await db.models.User.create({
 		name: 'John',
 		lastName: 'Snow',
 		username: 'john'
@@ -65,27 +54,9 @@ db.once('open', async function() {
 	console.log(john.get_initials())
 	// Getting object instance virtual property initials
 	console.log(john.initials)
+})
+//
 
-	app.get('/', (req, res) => {
-		res.send('Initial backend response.')
-	})
-
-	app.post(
-		'/login/',
-		asyncHandler(async (req, res) => {
-			console.log(`Login request from ${req.body.username}`)
-			const foundUser = await User.findOne({
-				username: req.body.username
-			})
-			if (foundUser) {
-				res.send(foundUser.toJSON({ virtuals: true }))
-			} else {
-				res.status(404).send('User not found')
-			}
-		})
-	)
-
-	app.listen(3000, () => {
-		console.log('listening on 3000')
-	})
+app.listen(3000, () => {
+	console.log('listening on 3000')
 })
