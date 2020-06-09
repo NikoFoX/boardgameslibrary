@@ -60,3 +60,5 @@ db.mongoose.connection.once('open', async function () {
 app.listen(3000, () => {
 	console.log('listening on 3000')
 })
+
+export default app
