@@ -40,22 +40,18 @@ db.mongoose
 import router from './routes'
 app.use(router)
 
-// REMOVE IN PRODUCTION
-db.mongoose.connection.dropDatabase()
-db.mongoose.connection.once('open', async function () {
-	// Creating John Snow user
-	let john = await db.models.User.create({
-		name: 'John',
-		lastName: 'Snow',
-		username: 'john'
-	})
+// // REMOVE IN PRODUCTION
+// db.mongoose.connection.dropDatabase()
+// db.mongoose.connection.once('open', async function () {
+// 	// Creating john user
+// 	let john = await db.models.User.create({
+// 		username: 'john'
+// 	})
 
-	// Calling object instance method get_initials()
-	console.log(john.get_initials())
-	// Getting object instance virtual property initials
-	console.log(john.initials)
-})
-//
+// 	// Getting object instance virtual property initials
+// 	console.log(john.initials)
+// })
+// //
 
 app.listen(3000, () => {
 	console.log('listening on 3000')
