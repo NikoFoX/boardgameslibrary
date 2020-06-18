@@ -7,24 +7,26 @@ import { MATCH_RESULTS } from '../common/constants'
 import { ObjectId } from 'mongodb'
 import User from '../db/models/User'
 import { v4 as uuid4 } from 'uuid'
+import testDbHandler from './test-db-handler'
 let request = agent(app)
 
+before(async () => await testDbHandler.connect())
+after(async () => await testDbHandler.closeDatabase())
+
 describe('GET /match tests', () => {
-	before(async () => {
-		this.user = new User({ username: 'jack', password: 'password' })
-		this.user.save()
-		this.request = request.set('Authorization', `Token ${this.user.token}`)
+	afterEach(async () => {
+		await testDbHandler.clearDatabase()
 	})
 	beforeEach(async () => {
-		await Game.deleteMany({})
-		await Match.deleteMany({})
-
+		this.user = new User({ username: 'jack', password: 'password' })
+		await this.user.save()
+		this.request = request.set('Authorization', `Token ${this.user.token}`)
 		let game = new Game({ user: this.user.id, title: 'Game 1' })
 		await game.save()
 		const matches = [{ game: game.id }, { game: game.id }]
 		await Match.create(matches)
 		this.match = new Match({ result: MATCH_RESULTS.WIN, game: game })
-		await this.match.save(0)
+		await this.match.save()
 	})
 
 	describe('GET /match', () => {
@@ -35,7 +37,7 @@ describe('GET /match tests', () => {
 		})
 		it('return 403 if token auth is wrong - no user found', async () => {
 			const response = await request
-				.get('/match/')
+				.get('/match')
 				.set('Authorization', `Token ${uuid4()}`)
 			expect(response.status).to.equal(403)
 		})

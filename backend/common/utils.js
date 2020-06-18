@@ -4,7 +4,7 @@ export const verifyToken = async (req, res, next) => {
 	let token = req.headers['authorization']
 	if (token) {
 		token = token.split(' ')[1]
-		const user = User.find({ token: token })
+		const user = await User.findOne({ token: token })
 		if (user) {
 			req.user = user
 			next()

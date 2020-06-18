@@ -42,16 +42,19 @@ app.use(router)
 
 // // REMOVE IN PRODUCTION
 // db.mongoose.connection.dropDatabase()
-// db.mongoose.connection.once('open', async function () {
-// 	// Creating john user
-// 	let john = await db.models.User.create({
-// 		username: 'john'
-// 	})
+db.mongoose.connection.once('open', async function () {
+	// Creating john user
+	// let john = await db.models.User.create({
+	// 	username: 'john'
+	// })
 
-// 	// Getting object instance virtual property initials
-// 	console.log(john.initials)
-// })
-// //
+	// Getting object instance virtual property initials
+	// console.log(john.initials)
+
+	let users = await db.models.User.count({})
+	console.log('users', users)
+})
+//
 
 app.listen(3000, () => {
 	console.log('listening on 3000')
