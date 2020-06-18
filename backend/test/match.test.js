@@ -1,4 +1,4 @@
-import supertest, { agent } from 'supertest'
+import { agent } from 'supertest'
 import { expect, assert } from 'chai'
 import app from '../app'
 import Game from '../db/models/Game'
@@ -9,9 +9,6 @@ import User from '../db/models/User'
 import { v4 as uuid4 } from 'uuid'
 import testDbHandler from './test-db-handler'
 let request = agent(app)
-
-before(async () => await testDbHandler.connect())
-after(async () => await testDbHandler.closeDatabase())
 
 describe('GET /match tests', () => {
 	afterEach(async () => {

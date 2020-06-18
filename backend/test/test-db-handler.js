@@ -40,6 +40,9 @@ const clearDatabase = async () => {
 	}
 }
 
+before(async () => await connect())
+after(async () => await closeDatabase())
+
 export default {
 	connect,
 	closeDatabase,
