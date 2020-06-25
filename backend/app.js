@@ -51,7 +51,7 @@ db.mongoose.connection.once('open', async function () {
 	// Getting object instance virtual property initials
 	// console.log(john.initials)
 
-	let users = await db.models.User.count({})
+	let users = await db.models.User.countDocuments({})
 	console.log('users', users)
 })
 //
