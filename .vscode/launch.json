@@ -11,6 +11,24 @@
 			"processId": "${command:PickProcess}",
 			"restart": true,
 			"protocol": "inspector"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Mocha Tests",
+			"program": "${workspaceFolder}/backend/node_modules/mocha/bin/_mocha",
+			"args": [
+				"--require",
+				"esm",
+				"--reporter",
+				"dot",
+				"--slow",
+				"5000",
+				"--colors",
+				"${workspaceFolder}/backend/test/*.js"
+			],
+			"internalConsoleOptions": "openOnSessionStart",
+			"skipFiles": ["<node_internals>/**"]
 		}
 	]
 }
