@@ -25,10 +25,11 @@ const newGame = async (req, res) => {
 }
 
 const updateGame = async (req, res) => {
+	let game = await endpoints.get(req, res)
+	if (!game) return res.sendStatus(404)
 	try {
-		const game = await endpoints.post(req, res)
+		let game = await endpoints.patch(req, res)
 		if (game) return res.send(game)
-		else res.sendStatus(404)
 	} catch (err) {
 		return res.status(400).send(err.errors)
 	}

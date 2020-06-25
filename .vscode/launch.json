@@ -15,16 +15,16 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "Mocha Tests",
+			"name": "Mocha tests debug",
 			"program": "${workspaceFolder}/backend/node_modules/mocha/bin/_mocha",
 			"args": [
 				"--require",
 				"esm",
-				"--reporter",
-				"dot",
 				"--slow",
 				"5000",
-				"--colors",
+				"--color",
+				"--fullTrace",
+				"--diff",
 				"${workspaceFolder}/backend/test/*.js"
 			],
 			"internalConsoleOptions": "openOnSessionStart",

@@ -70,4 +70,11 @@ describe('POST /game test', () => {
 			assert.equal(games[0].title, 'Supergame')
 		})
 	})
+
+	describe('Update game', () => {
+		it('fail to update game by non-existing id', async () => {
+			const response = await request.patch(`/game/${ObjectId()}`)
+			assert.equal(response.status, 404)
+		})
+	})
 })
