@@ -44,9 +44,13 @@ app.use(router)
 // db.mongoose.connection.dropDatabase()
 db.mongoose.connection.once('open', async function () {
 	// Creating john user
-	// let john = await db.models.User.create({
-	// 	username: 'john'
-	// })
+	try {
+		let john = await db.models.User.create({
+			username: 'john'
+		})
+	} catch {
+		console.log('error creating model')
+	}
 
 	// Getting object instance virtual property initials
 	// console.log(john.initials)

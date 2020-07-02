@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "mocha --require esm --exit --color",
 		"start": "nodemon start.js",
-		"debug": "nodemon --inspect start.js"
+		"debug": "nodemon --inspect=9228 start.js"
 	},
 	"author": "MrN",
 	"license": "ISC",
@@ -19,6 +19,7 @@
 		"mongodb": "^3.5.4",
 		"mongoose": "^5.9.4",
 		"mongoose-rest-api": "^1.2.1",
+		"mongoose-unique-validator": "^2.0.3",
 		"morgan": "^1.10.0",
 		"uuid": "^8.1.0"
 	},

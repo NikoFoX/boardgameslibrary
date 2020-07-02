@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { v4 as uuid4 } from 'uuid'
+import mongooseUniqueValidator from 'mongoose-unique-validator'
 
 let userSchema = new mongoose.Schema({
 	username: {
@@ -7,7 +8,8 @@ let userSchema = new mongoose.Schema({
 		required: true,
 		trim: true,
 		min: 4,
-		max: 30
+		max: 30,
+		unique: true
 	},
 	password: {
 		type: String,
@@ -19,6 +21,7 @@ let userSchema = new mongoose.Schema({
 	token: {
 		type: String,
 		equired: true,
+		unique: true,
 		default: () => uuid4().toString()
 	}
 })
@@ -33,5 +36,7 @@ let userSchema = new mongoose.Schema({
 // userSchema.virtual('initials').get(function () {
 // 	return this.name[0] + this.lastName[0]
 // })
+
+userSchema.plugin(mongooseUniqueValidator)
 
 export default mongoose.model('User', userSchema)
