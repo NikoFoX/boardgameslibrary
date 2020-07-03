@@ -11,9 +11,10 @@ const CLEARERROR = (state, errorName) => {
 const SETUSER = (state, userData) => {
 	state.user = userData
 	sessionStorage.setItem('user', JSON.stringify(userData))
+	sessionStorage.setItem('authToken', userData.token)
 }
 
-const LOGOUT = state => {
+const LOGOUT = (state) => {
 	state.user = {}
 	sessionStorage.setItem('user', '')
 }

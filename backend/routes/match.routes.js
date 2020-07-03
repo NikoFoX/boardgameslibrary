@@ -8,7 +8,7 @@ const router = new Router()
 router
 	.route('/')
 	.get(verifyToken, expressAsyncHandler(matchController.getAllMatches))
-	.post(expressAsyncHandler(matchController.newMatch))
+	.post(verifyToken, expressAsyncHandler(matchController.newMatch))
 router
 	.route('/:id')
 	.get(verifyToken, expressAsyncHandler(matchController.getMatch))

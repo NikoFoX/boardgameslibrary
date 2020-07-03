@@ -6,6 +6,10 @@ const axiosInstance = axios.create({
 })
 
 // Alter defaults after instance has been created
-// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN
+if (sessionStorage.getItem('authToken')) {
+	axiosInstance.defaults.headers.common[
+		'Authorization'
+	] = `Token ${sessionStorage.getItem('authToken')}`
+}
 
 export default axiosInstance

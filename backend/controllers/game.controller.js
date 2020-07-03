@@ -16,6 +16,7 @@ const getGame = async (req, res) => {
 }
 
 const newGame = async (req, res) => {
+	req.body.user = req.user.id
 	try {
 		const game = await endpoints.post(req, res)
 		return res.status(201).send(game)
