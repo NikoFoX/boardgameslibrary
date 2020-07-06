@@ -1,5 +1,7 @@
 import axios from '@/axios'
+import originalAxios from 'axios'
 import router from '@/router'
+import xmljs from 'xml-js'
 
 const login = async ({ commit }, data) => {
 	const { loginData, onSuccess } = data
@@ -35,6 +37,54 @@ const addGame = async ({ commit }, data) => {
 	}
 }
 
+const findGames = async ({ state, commit }, gameTitle) => {
+	const api = `https://www.boardgamegeek.com/xmlapi2/search?type=boardgame&query=${gameTitle}`
+	try {
+		const response = await originalAxios.get(api)
+		let foundGames = xmljs.xml2json(response.data, {
+			compact: true
+		})
+		foundGames = JSON.parse(foundGames)
+		if (foundGames.items) foundGames = foundGames.items.item
+		else foundGames = null
+		if (foundGames) {
+			let games = {}
+			foundGames.forEach((game) => {
+				games[game._attributes.id] = {
+					name: game.name._attributes.value,
+					id: game._attributes.id
+				}
+			})
+			state.foundGames = games
+		} else {
+			state.errors['foundGames'] = 'No games found'
+		}
+	} catch (error) {
+		console.log('Error finding games')
+		console.log(error)
+	}
+}
+
+const findGame = async ({ state, commit }, gameId) => {
+	const api = `https://www.boardgamegeek.com/xmlapi2/thing?id=${gameId}`
+	try {
+		const response = await originalAxios.get(api)
+		let foundGame = xmljs.xml2json(response.data, {
+			compact: true
+		})
+		foundGame = JSON.parse(foundGame)
+		foundGame = foundGame.items.item
+		console.log(foundGame)
+		state.foundGame = {
+			image: foundGame.image._text,
+			thumbnail: foundGame.thumbnail._text
+		}
+	} catch (error) {
+		console.log('Error finding games')
+		console.log(error)
+	}
+}
+
 const getGameDetails = async ({ commit }, gameId) => {
 	try {
 		const response = await axios.get('/gameDetails', gameId)
@@ -47,5 +97,7 @@ const getGameDetails = async ({ commit }, gameId) => {
 export default {
 	login,
 	logout,
-	addGame
+	addGame,
+	findGames,
+	findGame
 }

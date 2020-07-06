@@ -24,37 +24,21 @@
 				<v-card @click="goToAccount()">
 					<v-card-text :class="!drawerOpen() ? 'p-2' : ''">
 						<!-- <v-avatar color="red">{{ user.initials }}</v-avatar> -->
-						<span v-if="drawerOpen()" class="text-light">
-							{{ user.username }}
-						</span>
+						<span v-if="drawerOpen()" class="text-light">{{
+							user.username
+						}}</span>
 					</v-card-text>
 				</v-card>
 				<!-- </template> -->
 				<!-- <template v-else>
 					<v-avatar color="red">{{ user.initials }}</v-avatar>
-				</template> -->
+        </template>-->
 			</div>
 			<v-list dark elevation="10">
 				<v-list-item-group>
 					<v-list-item :to="{ name: 'Home' }">Recently played</v-list-item>
 					<v-list-item :to="{ name: 'Library' }">Library</v-list-item>
-					<v-list-item @click="newGameDialog = !newGameDialog"
-						>Add new game</v-list-item
-					>
-					<v-dialog v-model="newGameDialog" max-width="500px" fab-transition>
-						<div class="p-3 bg-light">
-							<v-form dark>
-								<v-text-field
-									label="Game title"
-									clearable
-									v-model="newGameTitle"
-								></v-text-field>
-							</v-form>
-							<v-btn block color="primary" dark @click="_addGame()"
-								>Add game</v-btn
-							>
-						</div>
-					</v-dialog>
+					<v-list-item @click="showNewGameModal()">Add new game</v-list-item>
 				</v-list-item-group>
 			</v-list>
 			<!-- Footer -->
@@ -62,13 +46,16 @@
 				<v-btn block color="red" @click="logout()" dark>Logout</v-btn>
 			</template>
 		</v-navigation-drawer>
+		<new-game-modal></new-game-modal>
 	</v-card>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import newGameModal from '@/components/NewGameModal'
 export default {
 	name: 'MainMenu',
+	components: { newGameModal },
 	data: () => ({
 		drawer: false,
 		newGameDialog: false,
@@ -85,16 +72,8 @@ export default {
 		goToAccount() {
 			this.$router.push({ name: 'Account' })
 		},
-		_addGame() {
-			const gameData = {
-				title: this.newGameTitle
-			}
-			this.addGame({
-				gameData: gameData,
-				onSuccess: () => {
-					this.newGameDialog = false
-				}
-			})
+		showNewGameModal() {
+			this.$eventBus.$emit('showNewGameModal')
 		}
 	}
 }

@@ -8,7 +8,9 @@ Vue.use(Vuex)
 
 const initialStoreState = {
 	user: {},
-	errors: {}
+	errors: {},
+	foundGames: null,
+	foundGame: null
 }
 
 export default new Vuex.Store({

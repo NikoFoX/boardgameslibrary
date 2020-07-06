@@ -8,6 +8,10 @@ const CLEARERROR = (state, errorName) => {
 	delete state.errors[errorName]
 }
 
+const clearErrors = (state) => {
+	state.errors = {}
+}
+
 const SETUSER = (state, userData) => {
 	state.user = userData
 	sessionStorage.setItem('user', JSON.stringify(userData))
@@ -19,9 +23,20 @@ const LOGOUT = (state) => {
 	sessionStorage.setItem('user', '')
 }
 
+const CLEARFOUNDGAMES = (state) => {
+	state.foundGames = null
+}
+
+const CLEARFOUNDGAME = (state) => {
+	state.foundGame = null
+}
+
 export default {
 	SETERROR,
 	CLEARERROR,
+	clearErrors,
 	SETUSER,
-	LOGOUT
+	LOGOUT,
+	CLEARFOUNDGAMES,
+	CLEARFOUNDGAME
 }

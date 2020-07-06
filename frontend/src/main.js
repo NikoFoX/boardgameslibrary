@@ -6,6 +6,8 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import axios from './axios'
 
+Vue.prototype.$eventBus = new Vue()
+
 Vue.config.productionTip = false
 
 new Vue({
@@ -13,5 +15,7 @@ new Vue({
 	store,
 	axios,
 	vuetify,
-	render: h => h(App)
+	render: (h) => {
+		return h(App)
+	}
 }).$mount('#app')
