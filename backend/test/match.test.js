@@ -18,7 +18,11 @@ describe('GET /match tests', () => {
 		this.user = new User({ username: 'jack', password: 'password' })
 		await this.user.save()
 		this.request = request.set('Authorization', `Token ${this.user.token}`)
-		let game = new Game({ user: this.user.id, title: 'Game 1' })
+		let game = new Game({
+			user: this.user.id,
+			title: 'Game 1',
+			externalId: 123
+		})
 		await game.save()
 		const matches = [{ game: game.id }, { game: game.id }]
 		await Match.create(matches)

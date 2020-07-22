@@ -21,6 +21,7 @@
 		"mongoose-rest-api": "^1.2.1",
 		"mongoose-unique-validator": "^2.0.3",
 		"morgan": "^1.10.0",
+		"normalize-mongoose": "0.0.1",
 		"uuid": "^8.1.0"
 	},
 	"devDependencies": {

@@ -12,7 +12,11 @@ describe('GET /game tests', () => {
 		this.user = new User({ username: 'jack', password: 'password' })
 		await this.user.save()
 		this.request = request.set('Authorization', `Token ${this.user.token}`)
-		this.game = new Game({ user: this.user.id, title: 'Supergame' })
+		this.game = new Game({
+			user: this.user.id,
+			title: 'Supergame',
+			externalId: 123
+		})
 		await this.game.save()
 	})
 	afterEach(async () => {
@@ -55,16 +59,33 @@ describe('POST /game test', () => {
 		it('no data - returns 400', async () => {
 			const response = await request.post('/game', {})
 			assert.equal(response.status, 400)
-			assert.include(response.text, 'Path `user` is required')
+			assert.include(response.text, 'Path `externalId` is required')
+			// assert.include(response.text, 'Path `user` is required')
 			assert.include(response.text, 'Path `title` is required')
 		})
 		it('create game', async () => {
 			const gameData = {
 				title: 'Supergame',
-				user: this.user.id
+				user: this.user.id,
+				externalId: 123
 			}
 			const response = await request.post('/game').send(gameData)
 			assert.equal(201, response.status)
+			const games = await Game.find({})
+			assert.lengthOf(games, 1)
+			assert.equal(games[0].title, 'Supergame')
+		})
+		it('create duplicate game', async () => {
+			const gameData = {
+				title: 'Supergame',
+				user: this.user.id,
+				externalId: 123
+			}
+			// first game
+			await request.post('/game').send(gameData)
+			// try duplicate
+			const response = await request.post('/game').send(gameData)
+			assert.equal(400, response.status)
 			const games = await Game.find({})
 			assert.lengthOf(games, 1)
 			assert.equal(games[0].title, 'Supergame')
