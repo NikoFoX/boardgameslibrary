@@ -7,14 +7,14 @@ const login = async ({ commit }, data) => {
 	const { loginData, onSuccess } = data
 	try {
 		const response = await axios.post('/login', loginData)
-		commit('SETUSER', response.data)
+		commit('setUser', response.data)
 		if (onSuccess) onSuccess()
-		commit('CLEARERROR')
+		commit('clearError')
 	} catch (error) {
 		if (error.response && [(400, 404)].includes(error.response.status)) {
-			commit('SETERROR', { loginError: "Login or password don't match." })
+			commit('setError', { loginError: "Login or password don't match." })
 		} else {
-			commit('SETERROR', {
+			commit('setError', {
 				loginConnectionError: 'Problems connecting with database.'
 			})
 		}
@@ -22,15 +22,17 @@ const login = async ({ commit }, data) => {
 }
 
 const logout = async ({ commit }) => {
-	commit('LOGOUT')
+	commit('logout')
 	router.push({ name: 'Login' })
 }
 
-const addGame = async ({ commit }, data) => {
+const addGame = async ({ commit, dispatch }, data) => {
 	const { gameData, onSuccess } = data
 	try {
 		const response = await axios.post('/game', gameData)
 		if (onSuccess) onSuccess()
+		// get games and go to library
+		dispatch('getGames')
 	} catch (error) {
 		console.log('Error adding game')
 		console.log(error)
@@ -85,6 +87,17 @@ const findGame = async ({ state, commit }, gameId) => {
 	}
 }
 
+const getGames = async ({ commit }) => {
+	try {
+		const response = await axios.get('/game')
+		commit('setGames', response.data)
+		router.push({ name: 'Library' })
+	} catch (error) {
+		console.log('Error getting games')
+		console.log(error)
+	}
+}
+
 const getGameDetails = async ({ commit }, gameId) => {
 	try {
 		const response = await axios.get('/gameDetails', gameId)
@@ -99,5 +112,6 @@ export default {
 	logout,
 	addGame,
 	findGames,
-	findGame
+	findGame,
+	getGames
 }

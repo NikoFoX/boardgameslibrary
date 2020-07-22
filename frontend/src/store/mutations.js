@@ -1,10 +1,10 @@
-const SETERROR = (state, errorItem) => {
+const setError = (state, errorItem) => {
 	state.errors = {
 		...state.errors,
 		...errorItem
 	}
 }
-const CLEARERROR = (state, errorName) => {
+const clearError = (state, errorName) => {
 	delete state.errors[errorName]
 }
 
@@ -12,31 +12,36 @@ const clearErrors = (state) => {
 	state.errors = {}
 }
 
-const SETUSER = (state, userData) => {
+const setUser = (state, userData) => {
 	state.user = userData
 	sessionStorage.setItem('user', JSON.stringify(userData))
 	sessionStorage.setItem('authToken', userData.token)
 }
 
-const LOGOUT = (state) => {
+const logout = (state) => {
 	state.user = {}
 	sessionStorage.setItem('user', '')
 }
 
-const CLEARFOUNDGAMES = (state) => {
+const clearFoundGames = (state) => {
 	state.foundGames = null
 }
 
-const CLEARFOUNDGAME = (state) => {
+const clearFoundGame = (state) => {
 	state.foundGame = null
 }
 
+const setGames = (state, games) => {
+	state.games = { ...games }
+}
+
 export default {
-	SETERROR,
-	CLEARERROR,
+	setError,
+	clearError,
 	clearErrors,
-	SETUSER,
-	LOGOUT,
-	CLEARFOUNDGAMES,
-	CLEARFOUNDGAME
+	setUser,
+	logout,
+	clearFoundGames,
+	clearFoundGame,
+	setGames
 }
