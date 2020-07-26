@@ -10,8 +10,14 @@ const getAllGames = async (req, res) => {
 }
 
 const getGame = async (req, res) => {
-	const game = await endpoints.get(req, res)
-	if (game) return res.send(game)
+	req.query.populate = [
+		'result_win',
+		'result_loss',
+		'result_draw',
+		'result_other'
+	]
+	let game = await endpoints.get(req, res)
+	if (game) return res.json(game)
 	else return res.sendStatus(404)
 }
 
