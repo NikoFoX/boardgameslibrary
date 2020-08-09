@@ -11,6 +11,7 @@ const getAllGames = async (req, res) => {
 
 const getGame = async (req, res) => {
 	req.query.populate = [
+		'played',
 		'result_win',
 		'result_loss',
 		'result_draw',

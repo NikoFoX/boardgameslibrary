@@ -35,6 +35,10 @@ const setGames = (state, games) => {
 	state.games = { ...games }
 }
 
+const setGame = (state, game) => {
+	state.game = game
+}
+
 export default {
 	setError,
 	clearError,
@@ -43,5 +47,6 @@ export default {
 	logout,
 	clearFoundGames,
 	clearFoundGame,
-	setGames
+	setGames,
+	setGame
 }

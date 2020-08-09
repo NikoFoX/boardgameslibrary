@@ -9,6 +9,7 @@ Vue.use(Vuex)
 const initialStoreState = {
 	user: {},
 	games: {},
+	game: null,
 	errors: {},
 	foundGames: null,
 	foundGame: null

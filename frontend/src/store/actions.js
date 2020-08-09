@@ -98,11 +98,24 @@ const getGames = async ({ commit }) => {
 	}
 }
 
-const getGameDetails = async ({ commit }, gameId) => {
+const getGame = async ({ commit }, gameId) => {
 	try {
-		const response = await axios.get('/gameDetails', gameId)
+		const response = await axios.get(`/game/${gameId}`)
+		commit('setGame', response.data)
 	} catch (error) {
-		console.log('error')
+		console.log('Error getting game')
+		console.log(error)
+	}
+}
+
+const saveMatch = async ({ commit, dispatch, state }, match) => {
+	let isNew = !match.id
+	try {
+		if (isNew) await axios.post('/match/', match)
+		else await axios.patch(`/match/${match.id}`, match)
+		dispatch('getGame', state.game.id)
+	} catch (error) {
+		console.log('Error saving match')
 		console.log(error)
 	}
 }
@@ -113,5 +126,7 @@ export default {
 	addGame,
 	findGames,
 	findGame,
-	getGames
+	getGames,
+	getGame,
+	saveMatch
 }

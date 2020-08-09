@@ -24,15 +24,11 @@
 				<v-card @click="goToAccount()">
 					<v-card-text :class="!drawerOpen() ? 'p-2' : ''">
 						<!-- <v-avatar color="red">{{ user.initials }}</v-avatar> -->
-						<span v-if="drawerOpen()" class="text-light">{{
-							user.username
-						}}</span>
+						<span v-if="drawerOpen()" class="text-light">
+							{{ user.username }}
+						</span>
 					</v-card-text>
 				</v-card>
-				<!-- </template> -->
-				<!-- <template v-else>
-					<v-avatar color="red">{{ user.initials }}</v-avatar>
-        </template>-->
 			</div>
 			<v-list dark elevation="10">
 				<v-list-item-group>
@@ -73,6 +69,8 @@ export default {
 			this.$router.push({ name: 'Account' })
 		},
 		showNewGameModal() {
+			this.drawer = false
+			this.$router.push({ name: 'Library' })
 			this.$eventBus.$emit('showNewGameModal')
 		}
 	}

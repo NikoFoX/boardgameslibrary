@@ -1,14 +1,14 @@
 <template>
 	<v-app>
 		<MainMenu />
-		<v-content>
+		<v-main>
 			<v-container fluid class="content" grid-list-xs>
 				<router-view :key="$route.path" />
 				<v-snackbar color="success" :value="userLogged" :timeout="3000" bottom>
 					<span class>Succesfully logged in</span>
 				</v-snackbar>
 			</v-container>
-		</v-content>
+		</v-main>
 	</v-app>
 </template>
 

@@ -55,6 +55,13 @@ let gameSchema = new mongoose.Schema(
 // })
 
 // POPULATE VIRTUALS
+gameSchema.virtual('played', {
+	ref: 'Match',
+	localField: '_id',
+	foreignField: 'game',
+	count: true
+})
+
 gameSchema.virtual('result_win', {
 	ref: 'Match',
 	localField: '_id',

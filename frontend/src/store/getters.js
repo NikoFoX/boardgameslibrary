@@ -6,6 +6,7 @@ const foundGames = (state) => state.foundGames
 const foundGame = (state) => state.foundGame
 
 const games = (state) => state.games
+const game = (state) => state.game
 
 export default {
 	errors,
@@ -13,5 +14,6 @@ export default {
 	userLogged,
 	foundGames,
 	foundGame,
-	games
+	games,
+	game
 }
