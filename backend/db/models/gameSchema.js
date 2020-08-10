@@ -94,6 +94,12 @@ gameSchema.virtual('result_other', {
 	count: true
 })
 
+gameSchema.virtual('matches', {
+	ref: 'Match',
+	localField: '_id',
+	foreignField: 'game'
+})
+
 gameSchema.plugin(normalize)
 gameSchema.plugin(mongooseLeanVirtuals)
 

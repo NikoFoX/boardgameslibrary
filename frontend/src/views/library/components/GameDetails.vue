@@ -29,7 +29,7 @@
         >Add new game</v-btn>
       </v-timeline-item>
       <v-timeline-item
-        v-for="(match, index) in game.games"
+        v-for="(match, index) in game.matches"
         :key="match.id"
         icon="fas fa-dice"
         large
@@ -39,31 +39,36 @@
         :icon-color="match.result === 'Won' ? 'success' : 'red'"
       >
         <v-card raised color="blue-grey lighten-4">
-          <v-card-title class="py-1">
-            <span class="h6">{{ match.played.split(' ')[0] }}</span>
+          <v-card-title class="py-1 pl-2 pr-2">
+            <!-- <span class="h6">{{ match.played.split(' ')[0] }}</span> -->
+            <span class="h6">{{ match.played.split('T')[0] }}</span>
+            <v-chip class="ml-auto" small v-if="match.points">
+              <i class="fas fa-star mr-2"></i>
+              {{ match.points }}
+            </v-chip>
           </v-card-title>
           <v-card-text class="text-dark">
             <v-row justify-space-between class="align-center">
-              <v-col v-if="match.team.length > 0" cols="12" sm="4" class="py-1">
+              <v-col v-if="match.team.length > 0" cols="12" class="py-1">
                 <span>Team: {{ match.team.join(', ') }}</span>
               </v-col>
-              <v-col cols="12" sm="4" class="text-center">
-                <span>{{ match.points[0] }}</span>
-                <v-btn rounded color="primary" x-small class="mx-3 mb-1">vs</v-btn>
-                <span>{{ match.points[1] }}</span>
+              <v-col cols="12" class="text-center pt-0 pb-1">
+                <v-chip color="primary" small>vs</v-chip>
               </v-col>
-              <v-col class="pt-0 pb-1">
-                <span class="d-flex justify-end">
-                  {{
-                  match.opponent.join(', ')
-                  }}
-                </span>
+              <v-col
+                cols="12"
+                class="pt-0 pb-1 pl-2 pr-1 d-flex justify-end"
+                v-for="(opponent, opponentIndex) in match.opponents"
+                :key="opponentIndex"
+              >
+                <span>{{ opponent.team.join(', ') }}</span>
+                <v-chip color="red" small class="ml-3 mb-1">
+                  <i class="fas fa-star mr-2"></i>
+                  {{ opponent.points }}
+                </v-chip>
               </v-col>
+              <v-col cols="12" v-if="match.scenario">Scenario: {{ match.scenario }}</v-col>
             </v-row>
-            <div
-              v-if="match.scenario"
-              class="d-flex justify-end text-right"
-            >Scenario: {{ match.scenario }}</div>
           </v-card-text>
         </v-card>
       </v-timeline-item>

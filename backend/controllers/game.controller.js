@@ -15,7 +15,8 @@ const getGame = async (req, res) => {
 		'result_win',
 		'result_loss',
 		'result_draw',
-		'result_other'
+		'result_other',
+		'matches'
 	]
 	let game = await endpoints.get(req, res)
 	if (game) return res.json(game)

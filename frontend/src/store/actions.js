@@ -110,6 +110,7 @@ const getGame = async ({ commit }, gameId) => {
 
 const saveMatch = async ({ commit, dispatch, state }, match) => {
 	let isNew = !match.id
+	match.game = state.game.id
 	try {
 		if (isNew) await axios.post('/match/', match)
 		else await axios.patch(`/match/${match.id}`, match)

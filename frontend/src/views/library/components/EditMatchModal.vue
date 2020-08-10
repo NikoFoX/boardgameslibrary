@@ -208,9 +208,11 @@ export default {
       return new Decimal(points).toFixed(2);
     },
     increasePoints(points) {
+      if (!points) points = 0;
       return new Decimal(points).add(1).toFixed(2);
     },
     decreasePoints(points) {
+      if (!points) points = 0;
       return new Decimal(points).minus(1).toFixed(2);
     },
     _saveMatch() {
