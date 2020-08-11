@@ -17,11 +17,11 @@
     </v-card>
     <v-timeline :dense="['xs', 'sm'].includes($vuetify.breakpoint.name)">
       <v-timeline-item fillDot small>
-        <template v-slot:icon>
+        <!-- <template v-slot:icon>
           <v-btn small fab color="success" id="icon-1">
             <i class="fas fa-plus"></i>
           </v-btn>
-        </template>
+        </template>-->
         <v-btn
           :block="['xs'].includes($vuetify.breakpoint.name)"
           color="success"
@@ -29,14 +29,14 @@
         >Add new game</v-btn>
       </v-timeline-item>
       <v-timeline-item
-        v-for="(match, index) in game.matches"
+        v-for="match in game.matches.slice().reverse()"
         :key="match.id"
         icon="fas fa-dice"
         large
         fillDot
         color="blue-grey lighten-4"
-        :id="'blue-grey-lighten-' + index"
-        :icon-color="match.result === 'Won' ? 'success' : 'red'"
+        :id="'blue-grey-lighten-' + match.id"
+        :icon-color="match.result === MATCH_RESULTS.WIN ? 'success' : 'red'"
       >
         <v-card raised color="blue-grey lighten-4">
           <v-card-title class="py-1 pl-2 pr-2">
@@ -52,7 +52,7 @@
               <v-col v-if="match.team.length > 0" cols="12" class="py-1">
                 <span>Team: {{ match.team.join(', ') }}</span>
               </v-col>
-              <v-col cols="12" class="text-center pt-0 pb-1">
+              <v-col v-if="match.opponents.length > 0" cols="12" class="text-center pt-0 pb-1">
                 <v-chip color="primary" small>vs</v-chip>
               </v-col>
               <v-col
@@ -62,14 +62,16 @@
                 :key="opponentIndex"
               >
                 <span>{{ opponent.team.join(', ') }}</span>
-                <v-chip color="red" small class="ml-3 mb-1">
+                <v-chip color="red" small class="ml-3 mb-1 overflow-visible">
                   <i class="fas fa-star mr-2"></i>
-                  {{ opponent.points }}
+                  <span class="mr-2">{{ opponent.points }}</span>
                 </v-chip>
               </v-col>
-              <v-col cols="12" v-if="match.scenario">Scenario: {{ match.scenario }}</v-col>
             </v-row>
           </v-card-text>
+          <v-card-actions>
+            <span style="font-size: 0.875em" v-if="match.scenario">Scenario: {{ match.scenario }}</span>
+          </v-card-actions>
         </v-card>
       </v-timeline-item>
     </v-timeline>
@@ -85,12 +87,14 @@
 <script>
 import EditMatchModal from "./EditMatchModal";
 import { mapActions, mapGetters } from "vuex";
+import { MATCH_RESULTS } from "@/common/constants";
 
 export default {
   name: "GameDetails",
   components: { EditMatchModal },
   props: ["id"],
   data: () => ({
+    MATCH_RESULTS: MATCH_RESULTS,
     dialog: false,
     // game: {
     // 	id: 1,
