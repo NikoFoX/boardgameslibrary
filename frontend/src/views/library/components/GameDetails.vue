@@ -9,19 +9,41 @@
     <v-card class="mb-5">
       <v-card-text class="text-dark h1">
         <div>Total matches: {{ game.played }}</div>
-        <div>Wins: {{ game.result_win }}</div>
-        <div>Loses: {{ game.result_loss }}</div>
-        <div>Draw: {{ game.result_draw }}</div>
-        <div>Not finished: {{ game.result_other }}</div>
+        <v-alert
+          tile
+          dense
+          border="left"
+          class="result-alert"
+          color="success"
+        >Wins: {{ game.result_win }}</v-alert>
+        <v-alert
+          tile
+          dense
+          border="left"
+          class="result-alert"
+          dark
+          color="red"
+        >Loses: {{ game.result_loss }}</v-alert>
+        <v-alert
+          tile
+          dense
+          border="left"
+          class="result-alert"
+          dark
+          color="grey darken-1"
+        >Draws: {{ game.result_draw }}</v-alert>
+        <v-alert
+          tile
+          dense
+          border="left"
+          class="result-alert"
+          color="white"
+        >Other: {{ game.result_other }}</v-alert>
       </v-card-text>
     </v-card>
     <v-timeline :dense="['xs', 'sm'].includes($vuetify.breakpoint.name)">
       <v-timeline-item fillDot small>
-        <!-- <template v-slot:icon>
-          <v-btn small fab color="success" id="icon-1">
-            <i class="fas fa-plus"></i>
-          </v-btn>
-        </template>-->
+        <template v-slot:icon></template>
         <v-btn
           :block="['xs'].includes($vuetify.breakpoint.name)"
           color="success"
@@ -44,7 +66,7 @@
             <span class="h6">{{ match.played.split('T')[0] }}</span>
             <v-chip class="ml-auto" small v-if="match.points">
               <i class="fas fa-star mr-2"></i>
-              {{ match.points }}
+              <span class="mr-2">{{ match.points }}</span>
             </v-chip>
           </v-card-title>
           <v-card-text class="text-dark">
@@ -53,7 +75,7 @@
                 <span>Team: {{ match.team.join(', ') }}</span>
               </v-col>
               <v-col v-if="match.opponents.length > 0" cols="12" class="text-center pt-0 pb-1">
-                <v-chip color="primary" small>vs</v-chip>
+                <v-chip color="primary" small class="versus-chip">vs</v-chip>
               </v-col>
               <v-col
                 cols="12"
@@ -154,4 +176,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.versus-chip {
+  display: inline-block;
+  width: 20%;
+}
+.result-alert {
+  margin-bottom: 0;
+  width: 100px;
+}
+</style>
