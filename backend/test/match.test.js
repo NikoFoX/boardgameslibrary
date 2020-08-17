@@ -18,16 +18,17 @@ describe('GET /match tests', () => {
 		this.user = new User({ username: 'jack', password: 'password' })
 		await this.user.save()
 		this.request = request.set('Authorization', `Token ${this.user.token}`)
-		let game = new Game({
+		let game = await Game.create({
 			user: this.user.id,
 			title: 'Game 1',
 			externalId: 123
 		})
-		await game.save()
-		const matches = [{ game: game.id }, { game: game.id }]
+		const matches = [{ game: game.id, points: '10.25' }, { game: game.id }]
 		await Match.create(matches)
-		this.match = new Match({ result: MATCH_RESULTS.WIN, game: game })
-		await this.match.save()
+		this.match = await Match.create({
+			result: MATCH_RESULTS.WIN,
+			game: game
+		})
 	})
 
 	describe('GET /match', () => {
@@ -35,6 +36,10 @@ describe('GET /match tests', () => {
 			const res = await this.request.get('/match')
 			expect(res.status).to.equal(200)
 			expect(res.body.length).to.equal(3)
+
+			let match = res.body[0]
+			assert.isNotNull(match.game)
+			assert.equal(match.gameTitle.title, 'Game 1')
 		})
 		it('return 403 if token auth is wrong - no user found', async () => {
 			const response = await request
@@ -49,7 +54,7 @@ describe('GET /match tests', () => {
 			const nonExistingmatchId = ObjectId()
 			const res = await this.request.get(`/match/${nonExistingmatchId}`)
 			expect(res.status).to.equal(404)
-			expect(res.text).to.equal('Match not found')
+			expect(res.text).to.equal('Not Found')
 		})
 
 		it('return a match of given id for given user', async () => {

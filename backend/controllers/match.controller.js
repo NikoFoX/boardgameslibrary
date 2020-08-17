@@ -4,19 +4,25 @@ import Rest from 'mongoose-rest-api'
 
 const endpoints = Rest(Match, 'id')
 
-// const getAllMatches = async (req, res) => {
-// 	let matches = await Match.find({})
-// 	return res.send(matches)
-// }
+const getAllMatches = async (req, res) => {
+	req.query.populate = ['gameTitle']
+	const matches = await endpoints.get(req, res)
+	if (matches) return res.send(matches)
+	else return res.sendStatus(404)
+}
 
-// const getMatch = async (req, res) => {
-// 	const matchId = req.params.id
-// 	if (!mongoose.Types.ObjectId.isValid(matchId))
-// 		return res.status(400).send('Invalid Match id')
-// 	let match = await Match.findById(matchId)
-// 	if (!match) return res.status(404).send('Match not found')
-// 	return res.send(match)
-// }
+const getMatch = async (req, res) => {
+	let game = await endpoints.get(req, res)
+	if (game) return res.json(game)
+	else return res.sendStatus(404)
+
+	// const matchId = req.params.id
+	// if (!mongoose.Types.ObjectId.isValid(matchId))
+	// 	return res.status(400).send('Invalid Match id')
+	// let match = await Match.findById(matchId)
+	// if (!match) return res.status(404).send('Match not found')
+	// return res.send(match)
+}
 
 const newMatch = async (req, res) => {
 	req.body.user = req.user.id
@@ -29,7 +35,7 @@ const newMatch = async (req, res) => {
 }
 
 export default {
-	// getAllMatches,
-	// getMatch,
+	getAllMatches,
+	getMatch,
 	newMatch
 }

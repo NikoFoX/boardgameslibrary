@@ -1,7 +1,6 @@
 import { Decimal128, ObjectId } from 'mongodb'
 import mongoose from 'mongoose'
 import Game from './Game'
-import Match from './Match'
 import normalize from 'normalize-mongoose'
 import mongooseLeanVirtuals from 'mongoose-lean-virtuals'
 import { MATCH_RESULTS } from '../../common/constants'

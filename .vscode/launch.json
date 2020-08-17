@@ -12,11 +12,10 @@
 			"request": "launch",
 			"restart": true,
 			"runtimeExecutable": "nodemon",
-			"args": ["inspect"],
+			"args": ["inspect", "delay", "2500"],
 			"skipFiles": ["<node_internals>/**"],
 			"type": "node",
-			"cwd": "${workspaceFolder}/backend",
-			"timeout": 1500
+			"cwd": "${workspaceFolder}/backend"
 		},
 		{
 			"console": "integratedTerminal",
