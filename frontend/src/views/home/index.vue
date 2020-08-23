@@ -15,25 +15,11 @@
               :color="match.result === MATCH_RESULTS.WIN ? 'success' : 'red darken-1'"
               text-color="primary"
             >?</v-chip>
-            {{ match.name }}
+            {{ match.gameTitle.title }}
           </span>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          <v-row no-gutters v-if="match.points">
-            <v-col class="text-center">{{ match.points }} : {{ match.points }}</v-col>
-          </v-row>
-          <v-row no-gutters>
-            <v-col v-if="match.team.length > 0">
-              <span>Team: {{ match.team.join(', ') }}</span>
-            </v-col>
-            <v-col v-if="match.opponents.length > 0">
-              <span class="float-right">
-                <v-badge left color="primary" class="mr-5">
-                  <span slot="badge">VS</span>
-                </v-badge>
-              </span>
-            </v-col>
-          </v-row>
+          <MatchItem :match="match"></MatchItem>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -46,8 +32,10 @@
 <script>
 import { MATCH_RESULTS } from "@/common/constants";
 import { mapActions, mapGetters } from "vuex";
+import MatchItem from "@/components/MatchItem";
 export default {
   name: "Home",
+  components: {MatchItem},
   data: () => ({
     MATCH_RESULTS: MATCH_RESULTS,
     loading: true,

@@ -25,7 +25,7 @@ let gameSchema = new mongoose.Schema(
 						user: this.user,
 						externalId: value
 					})
-					return game ? false : true
+					return !game
 				},
 				'Game already exists in user library.'
 			]

@@ -10,7 +10,7 @@ let matchSchema = new mongoose.Schema(
 		team: Array,
 		opponents: Array,
 		scenario: String,
-		points: { type: mongoose.Decimal128, get: (v) => `${v}` },
+		points: { type: mongoose.Decimal128, get: (v) => v ? `${v}` : null },
 		game: { type: mongoose.ObjectId, required: true }
 	},
 	{
@@ -39,7 +39,7 @@ matchSchema.virtual('gameTitle', {
 	localField: 'game',
 	foreignField: '_id',
 	justOne: true,
-	options: { select: 'title' }
+	options: { select: {'title': 1} }
 })
 
 matchSchema.plugin(normalize)
