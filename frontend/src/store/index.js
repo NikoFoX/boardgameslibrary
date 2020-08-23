@@ -10,6 +10,7 @@ const initialStoreState = {
 	user: {},
 	games: {},
 	game: null,
+	matches: [],
 	errors: {},
 	foundGames: null,
 	foundGame: null

@@ -39,6 +39,10 @@ const setGame = (state, game) => {
 	state.game = game
 }
 
+const setMatches = (state, matches) => {
+	state.matches = matches
+}
+
 export default {
 	setError,
 	clearError,
@@ -48,5 +52,6 @@ export default {
 	clearFoundGames,
 	clearFoundGame,
 	setGames,
-	setGame
+	setGame,
+	setMatches
 }

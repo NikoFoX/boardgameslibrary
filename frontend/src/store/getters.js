@@ -8,6 +8,8 @@ const foundGame = (state) => state.foundGame
 const games = (state) => state.games
 const game = (state) => state.game
 
+const matches = (state) => state.matches
+
 export default {
 	errors,
 	user,
@@ -15,5 +17,6 @@ export default {
 	foundGames,
 	foundGame,
 	games,
-	game
+	game,
+	matches
 }

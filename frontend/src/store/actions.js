@@ -121,6 +121,18 @@ const saveMatch = async ({ commit, dispatch, state }, match) => {
 	}
 }
 
+const getMatches = async ({ commit }, data) => {
+	try {
+		const response = await axios.get('/match/')
+		commit('setMatches', response.data)
+		if (data.onSuccess) data.onSuccess()
+	} catch (error) {
+		console.log('Error getting recent matches')
+		console.log(error)
+		if (data.onError) data.onError()
+	}
+}
+
 export default {
 	login,
 	logout,
@@ -129,5 +141,6 @@ export default {
 	findGame,
 	getGames,
 	getGame,
-	saveMatch
+	saveMatch,
+	getMatches
 }
