@@ -7,7 +7,7 @@
       scrollable
       :fullscreen="$vuetify.breakpoint.smAndDown"
       max-width="700px"
-      activator="#icon-1, #button-1"
+      activator="#icon-1, #button-1, #editMatchModalActivator"
     >
       <v-card>
         <v-card-title>
@@ -252,6 +252,10 @@ export default {
   },
   mounted() {
     if (this.form.opponents.length >= 1) this.addOpponent();
+    this.$root.$on('onEditMatch', (match) => {
+      this.dialog = true
+      this.form = {...match}
+    })
   },
 };
 </script>

@@ -4,9 +4,9 @@ import store from '@/store'
 // components
 import Account from '@/components/Account'
 import Login from '@/views/login'
-import Library from '@/views/library'
+import Library from '@/views/library/list/GameList'
 import Home from '@/views/home'
-import GameDetails from '@/views/library/components/GameDetails'
+import GameDetails from '@/views/library/edit/GameDetails'
 
 Vue.use(VueRouter)
 

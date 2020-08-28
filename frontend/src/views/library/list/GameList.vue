@@ -33,47 +33,14 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 export default {
-	name: 'Library',
+	name: 'GameList',
 	data: () => ({
-		// library: [
-		// 	{
-		// 		id: 1,
-		// 		name: 'Pandemic',
-		// 		bggLink: 'https://boardgamegeek.com/boardgame/30549/pandemic'
-		// 	},
-		// 	{
-		// 		id: 2,
-		// 		name: 'Arkham Horror 3rd Ed',
-		// 		cover:
-		// 			'https://cf.geekdo-images.com/imagepage/img/KnbBZ6ioy7OfhM7d0ZsQMm11tII=/fit-in/900x600/filters:no_upscale()/pic4582151.jpg',
-		// 		bggLink:
-		// 			'https://boardgamegeek.com/boardgame/257499/arkham-horror-third-edition'
-		// 	},
-		// 	{
-		// 		id: 3,
-		// 		name: 'Pandemic Legacy',
-		// 		cover:
-		// 			'https://cf.geekdo-images.com/imagepage/img/vuhGm0iS67iW8Z1019HsPmijRUU=/fit-in/900x600/filters:no_upscale()/pic2452831.png',
-		// 		bggLink:
-		// 			'https://boardgamegeek.com/boardgame/161936/pandemic-legacy-season-1'
-		// 	},
-		// 	{
-		// 		id: 4,
-		// 		name: 'Neuroshima Hex 3.0',
-		// 		cover:
-		// 			'https://cf.geekdo-images.com/imagepage/img/yzaaayLuV4qUbO3M22T31gXiyYQ=/fit-in/900x600/filters:no_upscale()/pic1844819.jpg',
-		// 		bggLink: 'https://boardgamegeek.com/boardgame/21241/neuroshima-hex-30'
-		// 	}
-		// ]
 	}),
 	computed: {
 		...mapGetters(['games'])
 	},
 	methods: {
-		...mapActions(['getGames']),
-		gameDetails() {
-			console.log('game details')
-		}
+		...mapActions(['getGames'])
 	},
 	mounted() {
 		this.getGames()

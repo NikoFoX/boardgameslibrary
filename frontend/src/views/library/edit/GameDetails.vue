@@ -51,15 +51,28 @@
         >Add new game</v-btn>
       </v-timeline-item>
       <v-timeline-item
-        v-for="match in game.matches.slice().reverse()"
+        v-for="(match, matchIndex) in game.matches.slice().reverse()"
         :key="match.id"
-        icon="fas fa-dice"
-        large
-        fillDot
-        color="blue-grey lighten-4"
         :id="'blue-grey-lighten-' + match.id"
-        :icon-color="match.result === MATCH_RESULTS.WIN ? 'success' : 'red'"
       >
+        <template v-slot:icon>
+          <v-speed-dial fab elevation="15" transition="slide-x-reverse-transition"
+                        :open-on-hover="$vuetify.breakpoint.mdAndUp"
+                        :direction="$vuetify.breakpoint.smAndDown ? 'right' : matchIndex%2 === 0 ? 'right' : 'left'">
+            <template v-slot:activator>
+              <v-btn fab>
+                <v-icon :color="match.result === MATCH_RESULTS.WIN ? 'success' : 'red'" large class="fas fa-dice"></v-icon>
+              </v-btn>
+            </template>
+            <v-btn fab color="warning" @click="editMatch(match)"
+                   :class="$vuetify.breakpoint.smAndDown ? 'ml-10' : ''">
+              <v-icon>fas fa-edit</v-icon>
+            </v-btn>
+            <v-btn fab color="red">
+              <v-icon>fas fa-times</v-icon>
+            </v-btn>
+          </v-speed-dial>
+        </template>
         <MatchItem :match="match"></MatchItem>
       </v-timeline-item>
     </v-timeline>
@@ -73,7 +86,7 @@
 </template>
 
 <script>
-import EditMatchModal from "./EditMatchModal"
+import EditMatchModal from "./components/EditMatchModal"
 import { mapActions, mapGetters } from "vuex"
 import { MATCH_RESULTS } from "@/common/constants"
 import MatchItem from "@/components/MatchItem"
@@ -83,59 +96,16 @@ export default {
   components: {MatchItem, EditMatchModal },
   props: ["id"],
   data: () => ({
-    MATCH_RESULTS: MATCH_RESULTS,
-    dialog: false,
-    // game: {
-    // 	id: 1,
-    // 	title: 'Arkham Horror 3ed',
-    // 	played: 5,
-    // 	wins: 3,
-    // 	loses: 2,
-    // 	draw: 1,
-    // 	notFinished: 3,
-    // 	rating: '4.45',
-    // 	games: [
-    // 		{
-    // 			id: 10,
-    // 			played: '2020-04-12 13:28',
-    // 			name: 'Arkham Horror 3ed',
-    // 			result: 'Lost',
-    // 			points: [10, 20],
-    // 			team: ['Jacob'],
-    // 			opponent: ['Game'],
-    // 			scenario: "Revenge of Thal'Ak"
-    // 		},
-    // 		{
-    // 			id: 3,
-    // 			played: '2020-03-21 16:28',
-    // 			name: 'Arkham Horror 3ed',
-    // 			result: 'Lost',
-    // 			points: [],
-    // 			team: ['Kima', 'Adam'],
-    // 			opponent: ['Game'],
-    // 			scenario: 'Coming of Cthulu'
-    // 		},
-    // 		{
-    // 			id: 1,
-    // 			played: '2019-12-28 21:28',
-    // 			name: 'Arkham Horror 3ed',
-    // 			result: 'Won',
-    // 			points: [],
-    // 			team: ['Kima', 'Radek'],
-    // 			opponent: ['Game'],
-    // 			scenario: 'Dark times in Arkham'
-    // 		}
-    // 	]
-    // }
+    MATCH_RESULTS: MATCH_RESULTS
   }),
   computed: {
     ...mapGetters(["game"]),
   },
   methods: {
     ...mapActions(["getGame"]),
-    openNewGameDialog() {
-      console.log("openNewGameDialog");
-    },
+    editMatch (match) {
+      this.$root.$emit('onEditMatch', match)
+    }
   },
   created() {
     this.getGame(this.id);

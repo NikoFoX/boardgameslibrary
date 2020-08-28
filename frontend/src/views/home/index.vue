@@ -38,39 +38,7 @@ export default {
   components: {MatchItem},
   data: () => ({
     MATCH_RESULTS: MATCH_RESULTS,
-    loading: true,
-    // gamesPlayed: [
-    //   {
-    //     id: 1,
-    //     played: "2020-04-04 13:28",
-    //     name: "Pandemic Legacy",
-    //     result: "Won",
-    //     points: [],
-    //     team: ["Kima"],
-    //     opponent: ["Game"],
-    //     scenario: "March",
-    //   },
-    //   {
-    //     id: 2,
-    //     played: "2020-04-11 13:28",
-    //     name: "Neuroshima Hex",
-    //     result: "Lost",
-    //     points: [30, 20],
-    //     team: [],
-    //     opponent: ["Jacob"],
-    //     scenario: "",
-    //   },
-    //   {
-    //     id: 3,
-    //     played: "2020-04-12 13:28",
-    //     name: "Arkham Horror",
-    //     result: "Lost",
-    //     points: [],
-    //     team: ["Kima", "Adam"],
-    //     opponent: ["Game"],
-    //     scenario: "Coming of Cthulu",
-    //   },
-    // ],
+    loading: true
   }),
   computed: {
     ...mapGetters(["matches"]),
