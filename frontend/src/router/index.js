@@ -5,7 +5,7 @@ import store from '@/store'
 import Account from '@/components/Account'
 import Login from '@/views/login'
 import Library from '@/views/library/list/GameList'
-import Home from '@/views/home'
+import Home from '@/views/home/MatchList'
 import GameDetails from '@/views/library/edit/GameDetails'
 
 Vue.use(VueRouter)

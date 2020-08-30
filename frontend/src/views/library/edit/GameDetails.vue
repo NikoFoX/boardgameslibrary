@@ -41,41 +41,7 @@
         >Other: {{ game.result_other }}</v-alert>
       </v-card-text>
     </v-card>
-    <v-timeline :dense="['xs', 'sm'].includes($vuetify.breakpoint.name)">
-      <v-timeline-item fillDot small>
-        <template v-slot:icon></template>
-        <v-btn
-          :block="['xs'].includes($vuetify.breakpoint.name)"
-          color="success"
-          id="button-1"
-        >Add new game</v-btn>
-      </v-timeline-item>
-      <v-timeline-item
-        v-for="(match, matchIndex) in game.matches.slice().reverse()"
-        :key="match.id"
-        :id="'blue-grey-lighten-' + match.id"
-      >
-        <template v-slot:icon>
-          <v-speed-dial fab elevation="15" transition="slide-x-reverse-transition"
-                        :open-on-hover="$vuetify.breakpoint.mdAndUp"
-                        :direction="$vuetify.breakpoint.smAndDown ? 'right' : matchIndex%2 === 0 ? 'right' : 'left'">
-            <template v-slot:activator>
-              <v-btn fab>
-                <v-icon :color="match.result === MATCH_RESULTS.WIN ? 'success' : 'red'" large class="fas fa-dice"></v-icon>
-              </v-btn>
-            </template>
-            <v-btn fab color="warning" @click="editMatch(match)"
-                   :class="$vuetify.breakpoint.smAndDown ? 'ml-10' : ''">
-              <v-icon>fas fa-edit</v-icon>
-            </v-btn>
-            <v-btn fab color="red">
-              <v-icon>fas fa-times</v-icon>
-            </v-btn>
-          </v-speed-dial>
-        </template>
-        <MatchItem :match="match"></MatchItem>
-      </v-timeline-item>
-    </v-timeline>
+    <MatchList :matches="game.matches"></MatchList>
     <EditMatchModal></EditMatchModal>
   </div>
   <div v-else class="d-flex justify-center align-center h-100">
@@ -89,11 +55,11 @@
 import EditMatchModal from "./components/EditMatchModal"
 import { mapActions, mapGetters } from "vuex"
 import { MATCH_RESULTS } from "@/common/constants"
-import MatchItem from "@/components/MatchItem"
+import MatchList from "@/views/home/MatchList"
 
 export default {
   name: "GameDetails",
-  components: {MatchItem, EditMatchModal },
+  components: { MatchList, EditMatchModal },
   props: ["id"],
   data: () => ({
     MATCH_RESULTS: MATCH_RESULTS

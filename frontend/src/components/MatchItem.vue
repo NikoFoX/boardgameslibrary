@@ -1,14 +1,17 @@
 <template>
     <v-card :raised="isGameDetails" :flat="!isGameDetails" :color="isGameDetails ? 'blue-grey lighten-4' : ''">
-      <v-card-title class="py-1 pl-2 pr-2">
+      <v-card-title v-if="match.gameTitle" class="py-1 pl-2 pr-2">
+        {{ match.gameTitle.title }}
+      </v-card-title>
+      <v-card-text class="text-dark">
+        <v-row>
         <!-- <span class="h6">{{ match.played.split(' ')[0] }}</span> -->
         <span class="h6">{{ match.played.split('T')[0] }}</span>
         <v-chip color="warning" class="ml-auto text-dark" small v-if="match.points">
           <i class="fas fa-star mr-2"></i>
           <span class="mr-2">{{ match.points }}</span>
         </v-chip>
-      </v-card-title>
-      <v-card-text class="text-dark">
+        </v-row>
         <v-row justify-space-between class="align-center">
           <v-col v-if="match.team.length > 0" cols="12" class="py-1">
             <span>Team: {{ match.team.join(', ') }}</span>
