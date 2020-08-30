@@ -34,8 +34,19 @@ const newMatch = async (req, res) => {
 	}
 }
 
+const updateMatch = async (req, res) => {
+	req.body.user = req.user.id
+	try {
+		const match = await endpoints.patch(req, res)
+		return res.status(201).send(match)
+	} catch (err) {
+		return res.status(400).send(err.errors)
+	}
+}
+
 export default {
 	getAllMatches,
 	getMatch,
-	newMatch
+	newMatch,
+	updateMatch
 }

@@ -12,5 +12,6 @@ router
 router
 	.route('/:id')
 	.get(verifyToken, expressAsyncHandler(matchController.getMatch))
+	.patch(verifyToken, expressAsyncHandler(matchController.updateMatch))
 
 export default router
