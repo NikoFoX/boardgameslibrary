@@ -121,6 +121,16 @@ const saveMatch = async ({ commit, dispatch, state }, match) => {
 	}
 }
 
+const removeMatch = ({ commit, dispatch, state }, matchId) => {
+	try {
+		axios.delete(`/match/${matchId}`)
+		dispatch('getGame', state.game.id)
+	} catch (error) {
+		console.log('Error removing match')
+		console.log(error)
+	}
+}
+
 const getMatches = async ({ commit }, data) => {
 	try {
 		const response = await axios.get('/match/')
@@ -142,5 +152,6 @@ export default {
 	getGames,
 	getGame,
 	saveMatch,
+	removeMatch,
 	getMatches
 }

@@ -12,6 +12,7 @@
           :block="['xs'].includes($vuetify.breakpoint.name)"
           color="success"
           id="button-1"
+          @click="addMatch()"
         ><i class="fas fa-plus mr-3" />Add new match</v-btn>
       </v-timeline-item>
       <v-timeline-item
@@ -25,14 +26,14 @@
                         :direction="$vuetify.breakpoint.smAndDown ? 'right' : matchIndex%2 === 0 ? 'right' : 'left'">
             <template v-slot:activator>
               <v-btn fab>
-                <v-icon :color="match.result === MATCH_RESULTS.WIN ? 'success' : 'red'" large class="fas fa-dice"></v-icon>
+                <v-icon :color="getMatchResultColor(match.result)" large class="fas fa-dice"></v-icon>
               </v-btn>
             </template>
             <v-btn fab color="warning" @click="editMatch(match)"
                    :class="$vuetify.breakpoint.smAndDown ? 'ml-10' : ''">
               <v-icon>fas fa-edit</v-icon>
             </v-btn>
-            <v-btn fab color="red">
+            <v-btn fab color="red" @click="removeMatch(match)">
               <v-icon>fas fa-times</v-icon>
             </v-btn>
           </v-speed-dial>
@@ -57,6 +58,7 @@
 <!--        </v-expansion-panel-content>-->
 <!--      </v-expansion-panel>-->
 <!--    </v-expansion-panels>-->
+    <RemoveMatchModal></RemoveMatchModal>
   </div>
   <div v-else class="w-100 h-100">
     <span class="noMatchesPlayedInfo">No matches here yet :(</span>
@@ -67,22 +69,35 @@
 import { MATCH_RESULTS } from "@/common/constants";
 import { mapActions, mapGetters } from "vuex";
 import MatchItem from "@/components/MatchItem";
+import {MATCH_RESULTS_COLORS} from "../../common/constants";
+import RemoveMatchModal from "./components/RemoveMatchModal";
 export default {
   name: "Home",
-  components: {MatchItem},
-  props: [ 'gameMatches' ],
+  components: {RemoveMatchModal, MatchItem},
   data: () => ({
     MATCH_RESULTS: MATCH_RESULTS,
     loading: true
   }),
   computed: {
-    ...mapGetters(["matches"]),
+    ...mapGetters(["game", "matches"]),
     matchList () {
-      return this.gameMatches || this.matches
+      return this.game.matches || this.matches
     }
   },
   methods: {
-    ...mapActions(["getMatches"])
+    ...mapActions(["getMatches"]),
+    addMatch () {
+      this.$root.$emit('onEditMatch', null)
+    },
+    editMatch (match) {
+      this.$root.$emit('onEditMatch', match)
+    },
+    removeMatch (match) {
+      this.$root.$emit('onRemoveMatch', match.id)
+    },
+    getMatchResultColor (result) {
+      return Object.values(MATCH_RESULTS_COLORS)[result]
+    }
   },
   mounted() {
     if (!this.gameMatches) {

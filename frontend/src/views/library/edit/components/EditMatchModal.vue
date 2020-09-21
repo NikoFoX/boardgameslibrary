@@ -134,7 +134,7 @@
           </v-row>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="blue darken-1" text @click.native="dialog = false">Close</v-btn>
+          <v-btn color="blue darken-1" text @click.native="hide()">Close</v-btn>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click.native="_saveMatch()">Save</v-btn>
         </v-card-actions>
@@ -193,6 +193,9 @@ export default {
         rules.push(required);
       return rules;
     },
+    hide() {
+      this.dialog = false
+    },
     addOrRemoveOpponents(event) {
       if (event) this.addOpponent();
       else this.form.opponents = [];
@@ -238,7 +241,7 @@ export default {
       }
       if (!this.teamMatch) delete form.team;
       if (!this.scenarioMatch) delete form.scenario;
-      this.$v.$touch();
+      this.$v.$touch()
       console.log(this.$v);
       if (this.$v.$invalid) {
         console.log("problem");
@@ -247,14 +250,14 @@ export default {
       }
       console.log(form);
       this.saveMatch(form);
-      this.dialog = false;
+      this.hide()
     },
   },
   mounted() {
     if (this.form.opponents.length >= 1) this.addOpponent();
     this.$root.$on('onEditMatch', (match) => {
       this.dialog = true
-      this.form = {...match}
+      if (match) this.form = {...match}
     })
   },
 };

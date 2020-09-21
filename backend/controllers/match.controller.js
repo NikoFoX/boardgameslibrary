@@ -44,9 +44,20 @@ const updateMatch = async (req, res) => {
 	}
 }
 
+const removeMatch = async (req, res) => {
+	req.body.user = req.user.id
+	try {
+		await endpoints.delete(req, res)
+		return res.status(203)
+	} catch (err) {
+		return res.status(400).send(err.errors)
+	}
+}
+
 export default {
 	getAllMatches,
 	getMatch,
 	newMatch,
-	updateMatch
+	updateMatch,
+	removeMatch
 }

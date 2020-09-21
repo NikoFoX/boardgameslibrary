@@ -14,7 +14,7 @@
           dense
           border="left"
           class="result-alert"
-          color="success"
+          :color="MATCH_RESULTS_COLORS.WIN"
         >Wins: {{ game.result_win }}</v-alert>
         <v-alert
           tile
@@ -22,7 +22,7 @@
           border="left"
           class="result-alert"
           dark
-          color="red"
+          :color="MATCH_RESULTS_COLORS.LOSS"
         >Loses: {{ game.result_loss }}</v-alert>
         <v-alert
           tile
@@ -30,18 +30,19 @@
           border="left"
           class="result-alert"
           dark
-          color="grey darken-1"
+          :color="MATCH_RESULTS_COLORS.DRAW"
         >Draws: {{ game.result_draw }}</v-alert>
         <v-alert
           tile
+          dark
           dense
           border="left"
           class="result-alert"
-          color="white"
+          :color="MATCH_RESULTS_COLORS.OTHER"
         >Other: {{ game.result_other }}</v-alert>
       </v-card-text>
     </v-card>
-    <MatchList :matches="game.matches"></MatchList>
+    <MatchList></MatchList>
     <EditMatchModal></EditMatchModal>
   </div>
   <div v-else class="d-flex justify-center align-center h-100">
@@ -54,7 +55,7 @@
 <script>
 import EditMatchModal from "./components/EditMatchModal"
 import { mapActions, mapGetters } from "vuex"
-import { MATCH_RESULTS } from "@/common/constants"
+import { MATCH_RESULTS, MATCH_RESULTS_COLORS } from "@/common/constants"
 import MatchList from "@/views/home/MatchList"
 
 export default {
@@ -62,19 +63,17 @@ export default {
   components: { MatchList, EditMatchModal },
   props: ["id"],
   data: () => ({
-    MATCH_RESULTS: MATCH_RESULTS
+    MATCH_RESULTS: MATCH_RESULTS,
+    MATCH_RESULTS_COLORS: MATCH_RESULTS_COLORS
   }),
   computed: {
     ...mapGetters(["game"]),
   },
   methods: {
-    ...mapActions(["getGame"]),
-    editMatch (match) {
-      this.$root.$emit('onEditMatch', match)
-    }
+    ...mapActions(["getGame"])
   },
   created() {
-    this.getGame(this.id);
+    this.getGame(this.id)
   },
 };
 </script>

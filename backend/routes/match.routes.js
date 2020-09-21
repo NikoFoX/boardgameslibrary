@@ -13,5 +13,6 @@ router
 	.route('/:id')
 	.get(verifyToken, expressAsyncHandler(matchController.getMatch))
 	.patch(verifyToken, expressAsyncHandler(matchController.updateMatch))
+	.delete(verifyToken, expressAsyncHandler(matchController.removeMatch))
 
 export default router
