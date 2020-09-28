@@ -76,7 +76,6 @@ const findGame = async ({ state, commit }, gameId) => {
 		})
 		foundGame = JSON.parse(foundGame)
 		foundGame = foundGame.items.item
-		console.log(foundGame)
 		state.foundGame = {
 			image: foundGame.image._text,
 			thumbnail: foundGame.thumbnail._text
