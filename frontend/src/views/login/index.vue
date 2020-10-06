@@ -41,6 +41,9 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+
+const store = 'auth'
+
 export default {
 	name: 'Login',
 	data: () => ({
@@ -52,7 +55,7 @@ export default {
 	},
 	methods: {
 		...mapMutations(['clearError']),
-		...mapActions(['login']),
+		...mapActions(store, ['login']),
 		_login() {
 			let loginData = {
 				username: this.username,
@@ -61,7 +64,6 @@ export default {
 			this.login({
 				loginData: loginData,
 				onSuccess: () => {
-					this.loginDialog = false
 					this.$router.push({ name: 'Library' })
 				}
 			})

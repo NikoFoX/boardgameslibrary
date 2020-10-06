@@ -51,10 +51,12 @@ export default {
     newGameTitle: "",
   }),
   computed: {
-    ...mapGetters(["user", "errors", "userLogged"]),
+    ...mapGetters(["errors"]),
+    ...mapGetters('auth', ['userLogged', 'user'])
   },
   methods: {
-    ...mapActions(["logout", "addGame"]),
+    ...mapActions(["addGame"]),
+    ...mapActions('auth', ['logout']),
     drawerOpen() {
       return this.$refs.drawer && !this.$refs.drawer.isMiniVariant;
     },

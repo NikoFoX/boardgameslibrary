@@ -100,16 +100,16 @@ export default {
     }
   },
   mounted() {
-    if (!this.gameMatches) {
-      this.getMatches({
-        onSuccess: () => {
-          this.loading = false;
-        },
-        onError: () => {
-          this.loading = false;
-        },
-      })
-    }
+    if (!this.matches) {
+    this.getMatches({
+      onSuccess: () => {
+        this.loading = false;
+      },
+      onError: () => {
+        this.loading = false;
+      },
+    })
+  } else this.loading = false
   }
 }
 </script>

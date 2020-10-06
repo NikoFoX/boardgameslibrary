@@ -23,11 +23,13 @@ export default {
 	},
 	data: () => ({}),
 	computed: {
-		...mapGetters(['errors', 'user', 'userLogged'])
+		...mapGetters(['errors']),
+		...mapGetters('auth', ['user', 'userLogged'])
 	},
 	methods: {
-		...mapMutations(['clearError', 'setUser']),
-		...mapActions(['login'])
+		...mapMutations(['clearError']),
+		...mapMutations('auth', ['setUser']),
+		...mapActions(['auth/login'])
 	},
 	created() {
 		if (sessionStorage.getItem('user')) {

@@ -3,28 +3,6 @@ import originalAxios from 'axios'
 import router from '@/router'
 import xmljs from 'xml-js'
 
-const login = async ({ commit }, data) => {
-	const { loginData, onSuccess } = data
-	try {
-		const response = await axios.post('/login', loginData)
-		commit('setUser', response.data)
-		if (onSuccess) onSuccess()
-		commit('clearError')
-	} catch (error) {
-		if (error.response && [(400, 404)].includes(error.response.status)) {
-			commit('setError', { loginError: "Login or password don't match." })
-		} else {
-			commit('setError', {
-				loginConnectionError: 'Problems connecting with database.'
-			})
-		}
-	}
-}
-
-const logout = async ({ commit }) => {
-	commit('logout')
-	router.push({ name: 'Login' })
-}
 
 const addGame = async ({ commit, dispatch }, data) => {
 	const { gameData, onSuccess } = data
@@ -143,8 +121,6 @@ const getMatches = async ({ commit }, data) => {
 }
 
 export default {
-	login,
-	logout,
 	addGame,
 	findGames,
 	findGame,

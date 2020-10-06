@@ -3,11 +3,11 @@ import Vuex from 'vuex'
 import actions from './actions'
 import getters from './getters'
 import mutations from './mutations'
+import auth from './modules/auth'
 
 Vue.use(Vuex)
 
 const initialStoreState = {
-	user: {},
 	games: {},
 	game: {
 		matches: []
@@ -23,5 +23,7 @@ export default new Vuex.Store({
 	mutations: mutations,
 	actions: actions,
 	getters: getters,
-	modules: {}
+	modules: {
+		auth
+	}
 })
