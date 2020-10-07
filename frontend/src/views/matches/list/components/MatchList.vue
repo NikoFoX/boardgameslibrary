@@ -23,7 +23,7 @@
         <template v-slot:icon>
           <v-speed-dial fab elevation="15" transition="slide-x-reverse-transition"
                         :open-on-hover="$vuetify.breakpoint.mdAndUp"
-                        :direction="$vuetify.breakpoint.smAndDown ? 'right' : matchIndex%2 === 0 ? 'right' : 'left'">
+                        :direction="timelineItemButtonHoverDirection(matchIndex)">
             <template v-slot:activator>
               <v-btn fab>
                 <v-icon :color="getMatchResultColor(match.result)" large class="fas fa-dice"></v-icon>
@@ -95,6 +95,11 @@ export default {
     },
     getMatchResultColor (result) {
       return Object.values(MATCH_RESULTS_COLORS)[result]
+    },
+    timelineItemButtonHoverDirection (matchIndex) {
+      // resolve direction of hovering buttons (prevents showing buttons over match card)
+      return this.$vuetify.breakpoint.smAndDown ? 'right' :
+              matchIndex%2 === (this.isAllGamesMatches ? 1 : 0) ? 'right' : 'left'
     }
   }
 }
