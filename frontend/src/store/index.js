@@ -8,7 +8,7 @@ import auth from './modules/auth'
 Vue.use(Vuex)
 
 const initialStoreState = {
-	games: {},
+	games: [],
 	game: {
 		matches: []
 	},

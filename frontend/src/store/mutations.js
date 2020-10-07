@@ -23,7 +23,7 @@ const clearFoundGame = (state) => {
 }
 
 const setGames = (state, games) => {
-	state.games = { ...games }
+	state.games = [ ...games ]
 }
 
 const setGame = (state, game) => {

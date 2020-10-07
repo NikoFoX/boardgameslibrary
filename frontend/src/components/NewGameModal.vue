@@ -1,5 +1,5 @@
 <template>
-	<v-dialog v-model="newGameDialog" max-width="500px" fab-transition>
+	<v-dialog v-model="newGameDialog" :fullscreen="mobile" :max-width="mobile ? ''  : '500px'" fab-transition>
 		<v-card>
 			<v-card-title v-if="foundGame && chosenGame">
 				<v-img
@@ -41,13 +41,13 @@
 							v-for="(foundGame, index) in foundGames"
 							:key="index"
 							:value="foundGame"
+							:disabled="gameAlreadyInLibrary(foundGame)"
 						>
 							{{ foundGame.name }}
-							<span
-								class="ml-3 text-success"
-								v-if="gameAlreadyInLibrary(foundGame)"
-								>ALREADY</span
-							>
+							<v-chip v-if="gameAlreadyInLibrary(foundGame)"
+									color="success" small class="ml-3">
+								ALREADY IN LIBRARY
+							</v-chip>
 						</v-list-item>
 					</v-list-item-group>
 				</v-list>
@@ -86,7 +86,10 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['errors', 'foundGames', 'foundGame'])
+		...mapGetters(['errors', 'foundGames', 'foundGame', 'games']),
+		mobile () {
+			return !this.$vuetify.breakpoint.smAndUp
+		}
 	},
 	methods: {
 		...mapActions(['addGame', 'findGames', 'findGame']),
@@ -121,7 +124,7 @@ export default {
 			this.clearFoundGames()
 		},
 		gameAlreadyInLibrary(game) {
-			return true
+			return !!this.games.find(g => g.externalId === game.id)
 		}
 	},
 	mounted() {
