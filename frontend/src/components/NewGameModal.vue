@@ -29,7 +29,7 @@
 				</v-container>
 			</v-card-title>
 			<div class="p-3 bg-light w-100">
-				<v-form dark>
+				<v-form @submit.prevent dark>
 					<v-text-field
 						label="Game title"
 						clearable
