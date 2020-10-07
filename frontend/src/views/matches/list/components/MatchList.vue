@@ -6,7 +6,7 @@
   </div>
   <div v-else>
     <v-timeline :dense="['xs', 'sm'].includes($vuetify.breakpoint.name)">
-      <v-timeline-item fillDot small>
+      <v-timeline-item fillDot small v-if="!isAllGamesMatches">
         <template v-slot:icon></template>
         <v-btn
           :block="['xs'].includes($vuetify.breakpoint.name)"
@@ -79,6 +79,9 @@ export default {
   }),
   computed: {
     ...mapGetters(["game"]),
+    isAllGamesMatches () {
+      return this.$route.name === 'Matches'
+    }
   },
   methods: {
     addMatch () {
