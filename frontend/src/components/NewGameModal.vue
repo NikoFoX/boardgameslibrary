@@ -1,6 +1,14 @@
 <template>
 	<v-dialog v-model="newGameDialog" :fullscreen="mobile" :max-width="mobile ? ''  : '500px'" fab-transition>
 		<v-card>
+			<v-toolbar v-if="mobile"
+					color="light" light max-height="50px" width="100%" flat dense tile class="p-0">
+				<v-toolbar-items class="ml-auto">
+					<v-btn icon @click="newGameDialog = false">
+						<v-icon>fa fa-times</v-icon>
+					</v-btn>
+				</v-toolbar-items>
+			</v-toolbar>
 			<v-card-title v-if="foundGame && chosenGame">
 				<v-img
 					height="200px"
@@ -20,7 +28,7 @@
 					</v-row>
 				</v-container>
 			</v-card-title>
-			<div class="p-3 bg-light">
+			<div class="p-3 bg-light w-100">
 				<v-form dark>
 					<v-text-field
 						label="Game title"
