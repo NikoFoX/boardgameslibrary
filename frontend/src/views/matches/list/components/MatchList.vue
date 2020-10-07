@@ -1,10 +1,10 @@
 <template>
-  <div v-if="loading" class="d-flex justify-center align-center h-100">
+  <div v-if="!matches" class="d-flex justify-center align-center h-100">
     <v-progress-circular indeterminate color="white" size="100">
       <i class="fas fa-dice h1 text-white"></i>
     </v-progress-circular>
   </div>
-  <div v-else-if="!loading && matches.length > 0">
+  <div v-else>
     <v-timeline :dense="['xs', 'sm'].includes($vuetify.breakpoint.name)">
       <v-timeline-item fillDot small>
         <template v-slot:icon></template>
@@ -16,7 +16,7 @@
         ><i class="fas fa-plus mr-3" />Add new match</v-btn>
       </v-timeline-item>
       <v-timeline-item
-        v-for="(match, matchIndex) in matchList.slice().reverse()"
+        v-for="(match, matchIndex) in matches.slice().reverse()"
         :key="match.id"
         :id="'blue-grey-lighten-' + match.id"
       >
@@ -59,33 +59,28 @@
 <!--      </v-expansion-panel>-->
 <!--    </v-expansion-panels>-->
     <RemoveMatchModal></RemoveMatchModal>
-  </div>
-  <div v-else class="w-100 h-100">
-    <span class="noMatchesPlayedInfo">No matches here yet :(</span>
+    <EditMatchModal></EditMatchModal>
   </div>
 </template>
 
 <script>
-import { MATCH_RESULTS } from "@/common/constants";
+import { MATCH_RESULTS, MATCH_RESULTS_COLORS } from "@/common/constants";
 import { mapActions, mapGetters } from "vuex";
-import MatchItem from "@/components/MatchItem";
-import {MATCH_RESULTS_COLORS} from "../../common/constants";
-import RemoveMatchModal from "./components/RemoveMatchModal";
+import MatchItem from "./MatchItem";
+import RemoveMatchModal from "./RemoveMatchModal";
+import EditMatchModal from './EditMatchModal'
 export default {
   name: "Home",
-  components: {RemoveMatchModal, MatchItem},
+  props: ['matches'],
+  components: {RemoveMatchModal, EditMatchModal, MatchItem},
   data: () => ({
     MATCH_RESULTS: MATCH_RESULTS,
     loading: true
   }),
   computed: {
-    ...mapGetters(["game", "matches"]),
-    matchList () {
-      return this.game.matches || this.matches
-    }
+    ...mapGetters(["game"]),
   },
   methods: {
-    ...mapActions(["getMatches"]),
     addMatch () {
       this.$root.$emit('onEditMatch', null)
     },
@@ -98,18 +93,6 @@ export default {
     getMatchResultColor (result) {
       return Object.values(MATCH_RESULTS_COLORS)[result]
     }
-  },
-  mounted() {
-    if (!this.matches) {
-    this.getMatches({
-      onSuccess: () => {
-        this.loading = false;
-      },
-      onError: () => {
-        this.loading = false;
-      },
-    })
-  } else this.loading = false
   }
 }
 </script>

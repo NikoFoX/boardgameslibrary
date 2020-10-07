@@ -3,7 +3,7 @@
     <v-app-bar color="dark" dark>
       <v-app-bar-nav-icon color="primary" @click="drawer = true"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
-      <router-link tag="span" :to="{ name: 'Home' }">Board Games Library</router-link>
+      <router-link tag="span" :to="{ name: 'Matches' }">Board Games Library</router-link>
     </v-app-bar>
     <v-navigation-drawer
       v-if="userLogged"
@@ -25,7 +25,7 @@
       </div>
       <v-list dark elevation="10">
         <v-list-item-group>
-          <v-list-item :to="{ name: 'Home' }">Recently played</v-list-item>
+          <v-list-item :to="{ name: 'Matches' }">Matches</v-list-item>
           <v-list-item :to="{ name: 'Library' }">Library</v-list-item>
           <v-list-item @click="showNewGameModal()">Add new game</v-list-item>
         </v-list-item-group>

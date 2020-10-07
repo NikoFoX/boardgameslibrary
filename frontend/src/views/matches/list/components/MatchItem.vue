@@ -1,5 +1,5 @@
 <template>
-    <v-card :raised="isGameDetails" :flat="!isGameDetails" :color="isGameDetails ? 'blue-grey lighten-4' : ''">
+    <v-card elevation="15" :flat="!isGameDetails" :color="isGameDetails ? 'blue-grey lighten-4' : ''">
       <v-card-title v-if="match.gameTitle" class="py-1 pl-2 pr-2">
         {{ match.gameTitle.title }}
       </v-card-title>

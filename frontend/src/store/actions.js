@@ -108,7 +108,8 @@ const removeMatch = ({ commit, dispatch, state }, matchId) => {
 	}
 }
 
-const getMatches = async ({ commit }, data) => {
+const getMatches = async ({ commit }, data={}) => {
+	commit('setMatches', null)
 	try {
 		const response = await axios.get('/match/')
 		commit('setMatches', response.data)

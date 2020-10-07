@@ -42,8 +42,7 @@
         >Other: {{ game.result_other }}</v-alert>
       </v-card-text>
     </v-card>
-    <MatchList></MatchList>
-    <EditMatchModal></EditMatchModal>
+    <MatchList :matches="game.matches"></MatchList>
   </div>
   <div v-else class="d-flex justify-center align-center h-100">
     <v-progress-circular indeterminate color="white" size="100">
@@ -53,14 +52,13 @@
 </template>
 
 <script>
-import EditMatchModal from "./components/EditMatchModal"
 import { mapActions, mapGetters } from "vuex"
 import { MATCH_RESULTS, MATCH_RESULTS_COLORS } from "@/common/constants"
-import MatchList from "@/views/home/MatchList"
+import MatchList from "@/views/matches/list/components/MatchList"
 
 export default {
   name: "GameDetails",
-  components: { MatchList, EditMatchModal },
+  components: { MatchList },
   props: ["id"],
   data: () => ({
     MATCH_RESULTS: MATCH_RESULTS,
