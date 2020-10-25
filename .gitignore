@@ -1,6 +1,7 @@
-backend/node_modules
-backend/package-lock.json
+old_backend/node_modules
+old_backend/package-lock.json
 .vscode
 .idea
 /node_modules/
-/mongodb-binaries
+/old_backend/mongodb-binaries
+/venv
