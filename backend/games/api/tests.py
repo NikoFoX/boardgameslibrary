@@ -1,12 +1,13 @@
-from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
 
+from users.models import User
+
 
 class CreateGameTestCase(TestCase):
     def setUp(self):
-        self.user = User.objects.create(name='user')
+        self.user = User.objects.create(username='user')
         print(self.user.auth_token)
         self.client = APIClient()
         self.client.credentials(AUTHORIZATION=f'Token {self.user.auth_token}')

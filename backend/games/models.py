@@ -15,7 +15,7 @@ class LogModel(models.Model):
 
 
 class Game(LogModel):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey('users.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=SHORT_STRING)
     rating = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
     image = models.CharField(max_length=LONG_STRING, null=True, blank=True)
