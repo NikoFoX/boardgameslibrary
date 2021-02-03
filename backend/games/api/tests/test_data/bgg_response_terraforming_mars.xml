@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <item type="boardgame" id="167791">\n         <thumbnail>
+        https://cf.geekdo-images.com/wg9oOLcsKvDesSUdZQ4rxw__thumb/img/BTxqxgYay5tHJfVoJ2NF5g43_gA=/fit-in/200x150/filters:strip_icc()/pic3536616.jpg</thumbnail>\n      <image>
+        https://cf.geekdo-images.com/wg9oOLcsKvDesSUdZQ4rxw__original/img/thIqWDnH9utKuoKVEUqveDixprI=/0x0/filters:format(jpeg)/pic3536616.jpg</image>\n
+        \t\t\t\t\n\t\t\t\t<name type="primary" sortindex="1" value="Terraforming Mars"/>\n\t\t\t\n\t\t\t\t\t\t
+        \t\t\t\t\n\t\t\t\t<name type="alternate" sortindex="3" value="A Mars terraform\xc3\xa1l\xc3\xa1sa"/>\n\t\t\t
+        \t\t\t\t\n\t\t\t\t<name type="alternate" sortindex="1" value="Mars: Teraformace"/>\n\t\t\t \t\t\t\t\n\t\t\t\t
+        <name type="alternate" sortindex="1" value="Teraformarea Planetei Marte"/>\n\t\t\t \t\t\t\t\n\t\t\t\t<name
+                type="alternate" sortindex="1" value="Teraformiranje Marsa"/>\n\t\t\t \t\t\t\t\n\t\t\t\t<name
+                type="alternate" sortindex="1" value="Terraformacja Marsa"/>\n\t\t\t \t\t\t\t\n\t\t\t\t
+        <name
+                type="alternate" sortindex="1"
+                value="\xd0\x9f\xd0\xbe\xd0\xba\xd0\xbe\xd1\x80\xd0\xb5\xd0\xbd\xd0\xb8\xd0\xb5 \xd0\x9c\xd0\xb0\xd1\x80\xd1\x81\xd0\xb0"/>
+        \n\t\t\t \t\t\t\t\n\t\t\t\t
+        <name type="alternate" sortindex="1"
+              value="\xd0\xa2\xd0\xb5\xd1\x80\xd0\xb0\xd1\x84\xd0\xbe\xd1\x80\xd0\xbc\xd0\xb8\xd1\x80\xd0\xb0\xd0\xb9 \xd0\x9c\xd0\xb0\xd1\x80\xd1\x81"/>
+        \n\t\t\t \t\t\t\t\n\t\t\t\t
+        <name type="alternate" sortindex="1"
+              value="\xd0\xa2\xd0\xb5\xd1\x80\xd0\xb0\xd1\x84\xd0\xbe\xd1\x80\xd0\xbc\xd1\x83\xd0\xb2\xd0\xb0\xd0\xbd\xd0\xbd\xd1\x8f \xd0\x9c\xd0\xb0\xd1\x80\xd1\x81\xd0\xb0"/>
+        \n\t\t\t \t\t\t\t\n\t\t\t\t
+        <name type="alternate" sortindex="1"
+              value="\xe0\xa4\x9f\xe0\xa5\x87\xe0\xa4\xb0\xe0\xa4\xbe\xe0\xa4\xab\xe0\xa5\x89\xe0\xa4\xb0\xe0\xa5\x8d\xe0\xa4\xae\xe0\xa4\xbf\xe0\xa4\x82\xe0\xa4\x97 \xe0\xa4\xae\xe0\xa4\xbe\xe0\xa4\xb0\xe0\xa5\x8d\xe0\xa4\xb8"/>
+        \n\t\t\t \t\t\t\t\n\t\t\t\t
+        <name type="alternate" sortindex="1"
+              value="\xe0\xb8\x9e\xe0\xb8\xa5\xe0\xb8\xb4\xe0\xb8\x81\xe0\xb8\x9e\xe0\xb8\xb4\xe0\xb8\xa0\xe0\xb8\x9e\xe0\xb8\x94\xe0\xb8\xb2\xe0\xb8\xa7\xe0\xb8\xad\xe0\xb8\xb1\xe0\xb8\x87\xe0\xb8\x84\xe0\xb8\xb2\xe0\xb8\xa3"/>
+        \n\t\t\t \t\t\t\t\n\t\t\t\t
+        <name type="alternate" sortindex="1"
+              value="\xe3\x83\x86\xe3\x83\xa9\xe3\x83\x95\xe3\x82\xa9\xe3\x83\xbc\xe3\x83\x9f\xe3\x83\xb3\xe3\x82\xb0\xe3\x83\xbb\xe3\x83\x9e\xe3\x83\xbc\xe3\x82\xba"/>
+        \n\t\t\t \t\t\t\t\n\t\t\t\t<name type="alternate" sortindex="1"
+                                         value="\xe6\xae\x96\xe6\xb0\x91\xe7\x81\xab\xe6\x98\x9f"/>\n\t\t\t
+        \t\t\t\t\n\t\t\t\t
+        <name type="alternate" sortindex="1"
+              value="\xed\x85\x8c\xeb\x9d\xbc\xed\x8f\xac\xeb\xb0\x8d \xeb\xa7\x88\xec\x8a\xa4"/>
+        \n\t\t\t\n\t\t\t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t<description>In the 2400s, mankind begins to terraform the
+            planet Mars. Giant corporations, sponsored by the World Government on Earth, initiate huge projects to raise
+            the temperature, the oxygen level, and the ocean coverage until the environment is habitable. In
+            Terraforming Mars, you play one of those corporations and work together in the terraforming process, but
+            compete for getting victory points that are awarded not only for your contribution to the terraforming, but
+            also for advancing human infrastructure throughout the solar system, and doing other commendable things.&amp;#10;&amp;#10;The
+            players acquire unique project cards (from over two hundred different ones) by buying them to their hand.
+            The projects (cards) can represent anything from introducing plant life or animals, hurling asteroids at the
+            surface, building cities, to mining the moons of Jupiter and establishing greenhouse gas industries to heat
+            up the atmosphere. The cards can give you immediate bonuses, as well as increasing your production of
+            different resources. Many cards also have requirements and they become playable when the temperature,
+            oxygen, or ocean coverage increases enough. Buying cards is costly, so there is a balance between buying
+            cards (3 megacredits per card) and actually playing them (which can cost anything between 0 to 41
+            megacredits, depending on the project). Standard Projects are always available to complement your cards.&amp;#10;&amp;#10;Your
+            basic income, as well as your basic score, is based on your Terraform Rating (starting at 20), which
+            increases every time you raise one of the three global parameters. However, your income is complemented with
+            your production, and you also get VPs from many other sources.&amp;#10;&amp;#10;Each player keeps track of
+            their production and resources on their player boards, and the game uses six types of resources:
+            MegaCredits, Steel, Titanium, Plants, Energy, and Heat. On the game board, you compete for the best places
+            for your city tiles, ocean tiles, and greenery tiles. You also compete for different Milestones and Awards
+            worth many VPs. Each round is called a generation (guess why) and consists of the following phases:&amp;#10;&amp;#10;1)
+            Player order shifts clockwise.&amp;#10;2) Research phase: All players buy cards from four privately drawn.&amp;#10;3)
+            Action phase: Players take turns doing 1-2 actions from these options: Playing a card, claiming a Milestone,
+            funding an Award, using a Standard project, converting plant into greenery tiles (and raising oxygen),
+            converting heat into a temperature raise, and using the action of a card in play. The turn continues around
+            the table (sometimes several laps) until all players have passed.&amp;#10;4) Production phase: Players get
+            resources according to their terraform rating and production parameters.&amp;#10;&amp;#10;When the three
+            global parameters (temperature, oxygen, ocean) have all reached their goal, the terraforming is complete,
+            and the game ends after that generation. Count your Terraform Rating and other VPs to determine the winning
+            corporation!&amp;#10;&amp;#10;</description>\n\t\t\t\t\t\t\t\t\t\t \t \t\t\t\t
+        <yearpublished value="2016"/>
+        \n\t\t\t\t\t\t \t\t\t\t<minplayers value="1"/>\n\t\t\t\t\t\t \t\t\t\t<maxplayers value="5"/>\n\t\t\t\t\t\t
+        \t\t\t
+        <poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="1644">\n\t\t\t\n\t\t
+            <results numplayers="1">\t\t\n\t\t\t\t\t<result value="Best" numvotes="151"/>\n\t\t\t\t\t<result
+                    value="Recommended" numvotes="748"/>\n\t\t\t\t\t
+                <result value="Not Recommended" numvotes="227"/>
+                \n\t\t\t\t
+            </results>
+            \t\t\t\t\t\n\t\t\t\n\t\t
+            <results numplayers="2">\t\t\n\t\t\t\t\t<result value="Best" numvotes="312"/>\n\t\t\t\t\t<result
+                    value="Recommended" numvotes="901"/>\n\t\t\t\t\t
+                <result value="Not Recommended" numvotes="143"/>
+                \n\t\t\t\t
+            </results>
+            \t\t\t\t\t\n\t\t\t\n\t\t
+            <results numplayers="3">\t\t\n\t\t\t\t\t<result value="Best" numvotes="928"/>\n\t\t\t\t\t<result
+                    value="Recommended" numvotes="416"/>\n\t\t\t\t\t
+                <result value="Not Recommended" numvotes="28"/>
+                \n\t\t\t\t
+            </results>
+            \t\t\t\t\t\n\t\t\t\n\t\t
+            <results numplayers="4">\t\t\n\t\t\t\t\t<result value="Best" numvotes="575"/>\n\t\t\t\t\t<result
+                    value="Recommended" numvotes="628"/>\n\t\t\t\t\t
+                <result value="Not Recommended" numvotes="99"/>
+                \n\t\t\t\t
+            </results>
+            \t\t\t\t\t\n\t\t\t\n\t\t
+            <results numplayers="5">\t\t\n\t\t\t\t\t<result value="Best" numvotes="78"/>\n\t\t\t\t\t<result
+                    value="Recommended" numvotes="434"/>\n\t\t\t\t\t
+                <result value="Not Recommended" numvotes="628"/>
+                \n\t\t\t\t
+            </results>
+            \t\t\t\t\t\n\t\t\t\n\t\t
+            <results numplayers="5+">\t\t\n\t\t\t\t\t<result value="Best" numvotes="6"/>\n\t\t\t\t\t<result
+                    value="Recommended" numvotes="4"/>\n\t\t\t\t\t
+                <result value="Not Recommended" numvotes="713"/>
+                \n\t\t\t\t
+            </results>
+            \t\t\t\t\t\n\t
+        </poll>
+        \t\t\t \t\t\t\t<playingtime value="120"/>\n\t\t\t\t\t\t \t\t\t\t<minplaytime value="120"/>\n\t\t\t\t\t\t
+        \t\t\t\t<maxplaytime value="120"/>\n\t\t\t\t\t\t \t\t\t\t<minage value="12"/>\n\t\t\t\t\t\t \t\t\t
+        <poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="262">\n\t\t\t
+            <results>\t\t\n\t\t\t\t\t<result value="2" numvotes="0"/>\n\t\t\t\t\t
+                <result value="3" numvotes="0"/>
+                \n\t\t\t\t\t<result value="4" numvotes="0"/>\n\t\t\t\t\t<result value="5" numvotes="0"/>\n\t\t\t\t\t
+                <result value="6" numvotes="0"/>\n\t\t\t\t\t<result value="8" numvotes="15"/>\n\t\t\t\t\t<result
+                        value="10" numvotes="68"/>\n\t\t\t\t\t<result value="12" numvotes="108"/>\n\t\t\t\t\t<result
+                        value="14" numvotes="63"/>\n\t\t\t\t\t<result value="16" numvotes="5"/>\n\t\t\t\t\t<result
+                        value="18" numvotes="2"/>\n\t\t\t\t\t<result value="21 and up" numvotes="1"/>\n\t\t\t\t
+            </results>
+            \t\t\t\t\t\n\t
+        </poll>
+        \t\t\t \t\t\t
+        <poll name="language_dependence" title="Language Dependence" totalvotes="78">\n\t\t\t\n\t\t
+            <results>\t\t\n\t\t\t\t\t<result level="421" value="No necessary in-game text" numvotes="0"/>\n\t\t\t\t\t
+                <result level="422" value="Some necessary text - easily memorized or small crib sheet" numvotes="8"/>
+                \n\t\t\t\t\t<result level="423" value="Moderate in-game text - needs crib sheet or paste ups"
+                                    numvotes="34"/>\n\t\t\t\t\t<result level="424"
+                                                                       value="Extensive use of text - massive conversion needed to be playable"
+                                                                       numvotes="34"/>\n\t\t\t\t\t
+                <result level="425"
+                        value="Unplayable in another language"
+                        numvotes="2"/>
+                \n\t\t\t\t
+            </results>
+            \t\t\t\t\t\n\t
+        </poll>
+        \t\t\t \t\t\t \t\t\t \t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamecategory" id="1021"
+              value="Economic"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamecategory"
+              id="1084"
+              value="Environmental"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamecategory"
+              id="1088"
+              value="Industry / Manufacturing"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamecategory"
+              id="1016"
+              value="Science Fiction"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamecategory"
+              id="1113"
+              value="Space Exploration"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamecategory"
+              id="1086"
+              value="Territory Building"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\n\n\t\t\t \t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t<link
+                type="boardgamemechanic" id="2041" value="Card Drafting"/>\n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t
+        \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamemechanic" id="2984" value="Drafting"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamemechanic"
+              id="2875"
+              value="End Game Bonuses"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamemechanic"
+              id="2040"
+              value="Hand Management"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamemechanic"
+              id="2026"
+              value="Hexagon Grid"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamemechanic"
+              id="2902" value="Income"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamemechanic"
+              id="2004"
+              value="Set Collection"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamemechanic"
+              id="2819"
+              value="Solo / Solitaire Game"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamemechanic"
+              id="2686" value="Take That"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamemechanic"
+              id="2002"
+              value="Tile Placement"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamemechanic"
+              id="2828"
+              value="Turn Order: Progressive"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamemechanic"
+              id="2015"
+              value="Variable Player Powers"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\n\n\t\t\t \t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link
+                type="boardgamefamily" id="64952" value="Components: Map (Global Scale)"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamefamily"
+              id="65191"
+              value="Components: Multi-Use Cards"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamefamily"
+              id="46915"
+              value="Game: Terraforming Mars"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamefamily"
+              id="27646"
+              value="Mechanism: Tableau Building"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamefamily"
+              id="5666"
+              value="Players: Games with Solitaire Rules"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamefamily"
+              id="49694"
+              value="Series: Future Timeline (Fryxgames)"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamefamily"
+              id="19298"
+              value="Space: Earth\'s Solar System"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamefamily"
+              id="10169"
+              value="Space: Mars"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\n\n\t\t\t \t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link
+                type="boardgameexpansion" id="296298"
+                value="French Championship Promo Cards (fan expansion for Terraforming Mars)"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="317189"
+              value="Meeple BR Jogos Promo Pack #1"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="322281"
+              value="Terraforming Mars: Asteroid Rights Promo Card"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="265081"
+              value="Terraforming Mars: Atmo Collectors Promo Card"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="241497"
+              value="Terraforming Mars: BGG User-Created Corporation Pack"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="311247"
+              value="Terraforming Mars: Big Box"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="312319"
+              value="Terraforming Mars: Big Box Promo Pack"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="255681"
+              value="Terraforming Mars: Colonies"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="218127"
+              value="Terraforming Mars: Hellas &amp; Elysium"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="265083"
+              value="Terraforming Mars: Jovian Lanterns Promo Card"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="265084"
+              value="Terraforming Mars: Lunar Exports Promo Card"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="230241"
+              value="Terraforming Mars: Penguins Promo Card"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="247030"
+              value="Terraforming Mars: Prelude"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="230123"
+              value="Terraforming Mars: Self Replicating Robots Promo Card"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="202825"
+              value="Terraforming Mars: Small Asteroid Promo Card"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="226297"
+              value="Terraforming Mars: Snow Algae Promo Card"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="273473"
+              value="Terraforming Mars: Turmoil"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="279345"
+              value="Terraforming Mars: Turmoil Promos"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameexpansion"
+              id="231965"
+              value="Terraforming Mars: Venus Next"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\n\n\t\t\t \t\t\t\n\n\t\t\t \t\t\t\n\n\t\t\t \t\t\t\n\n\t\t\t \t\t\t\n\n\t\t\t
+        \t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgameimplementation" id="328871"
+              value="Terraforming Mars: Ares Expedition"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link
+                type="boardgameimplementation" id="296108" value="Terraforming Mars: Dice Game"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\n\n\t\t\t \t\t\t\n\n\t\t\t \t \t \t\t\t\t\n\t\t
+        \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamedesigner" id="52075" value="Jacob Fryxelius"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\n\n\t\t\t \t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t<link
+                type="boardgameartist" id="62819" value="Isaac Fryxelius"/>\n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\n\n\t\t\t
+        \t \t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher" id="18575"
+              value="FryxGames"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="3475" value="Arclight"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="46980"
+              value="Br\xc3\xa4dspel.se"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="22560"
+              value="Fantasmagoria"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="4785"
+              value="Ghenos Games"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="46884"
+              value="Green Elephant Games"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="5380"
+              value="Intrafin Games"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="32866"
+              value="Kilogames"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="8291"
+              value="Korea Boardgames Co., Ltd."/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="3218"
+              value="Lautapelit.fi"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="34801"
+              value="Lavka Games"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="25203"
+              value="Lex Games"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="30677"
+              value="Maldito Games"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="32591" value="MeepleBR"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="7992" value="MINDOK"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="23756"
+              value="MYBG Co., Ltd."/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="32395"
+              value="NeoTroy Games"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="36366"
+              value="Pridemage Games"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="7466"
+              value="Rebel Sp. z o.o."/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="36563"
+              value="Reflexshop"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="24844"
+              value="Schwerkraft-Verlag"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="33998"
+              value="Siam Board Games"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\n\t\t \t\t\t\n\n\t\t\t\n\t\t\n\t\t\t\t\t
+        <link type="boardgamepublisher"
+              id="11652"
+              value="Stronghold Games"/>
+        \n\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\n\n\t\t\t\n\t\n\n\t\n\n\t\n\t\n\t\n \n\t\n \n
+    </item>
+    \n
+</items>
