@@ -7,7 +7,7 @@ import xmljs from 'xml-js'
 const addGame = async ({ commit, dispatch }, data) => {
 	const { gameData, onSuccess } = data
 	try {
-		const response = await axios.post('/game', gameData)
+		const response = await axios.post('api/games/game/', gameData)
 		if (onSuccess) onSuccess()
 		// get games and go to library
 		dispatch('getGames')
@@ -66,7 +66,7 @@ const findGame = async ({ state, commit }, gameId) => {
 
 const getGames = async ({ commit }) => {
 	try {
-		const response = await axios.get('/game')
+		const response = await axios.get('api/games/game/')
 		commit('setGames', response.data)
 		router.push({ name: 'Library' })
 	} catch (error) {
@@ -77,7 +77,7 @@ const getGames = async ({ commit }) => {
 
 const getGame = async ({ commit }, gameId) => {
 	try {
-		const response = await axios.get(`/game/${gameId}`)
+		const response = await axios.get(`api/games/game/${gameId}`)
 		commit('setGame', response.data)
 	} catch (error) {
 		console.log('Error getting game')
@@ -89,7 +89,7 @@ const saveMatch = async ({ commit, dispatch, state }, match) => {
 	let isNew = !match.id
 	match.game = state.game.id
 	try {
-		if (isNew) await axios.post('/match/', match)
+		if (isNew) await axios.post('api/games/match/', match)
 		else await axios.patch(`/match/${match.id}`, match)
 		dispatch('getGame', state.game.id)
 	} catch (error) {
@@ -100,7 +100,7 @@ const saveMatch = async ({ commit, dispatch, state }, match) => {
 
 const removeMatch = ({ commit, dispatch, state }, matchId) => {
 	try {
-		axios.delete(`/match/${matchId}`)
+		axios.delete(`api/games/match/${matchId}`)
 		dispatch('getGame', state.game.id)
 	} catch (error) {
 		console.log('Error removing match')
@@ -111,7 +111,7 @@ const removeMatch = ({ commit, dispatch, state }, matchId) => {
 const getMatches = async ({ commit }, data={}) => {
 	commit('setMatches', null)
 	try {
-		const response = await axios.get('/match/')
+		const response = await axios.get('api/games/match/')
 		commit('setMatches', response.data)
 		if (data.onSuccess) data.onSuccess()
 	} catch (error) {

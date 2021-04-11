@@ -4,7 +4,7 @@ const setUser = (state, userData) => {
 	state.user = userData
 	sessionStorage.setItem('user', JSON.stringify(userData))
 	sessionStorage.setItem('authToken', userData.token)
-	axios.defaults.headers.common['Authorization'] = `Token ${userData.token}`
+	axios.defaults.headers.common['Authorization'] = `Token ${userData.key}`
 }
 
 const logout = (state) => {

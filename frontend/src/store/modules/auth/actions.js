@@ -5,7 +5,7 @@ const login = async ({ commit }, data) => {
 	delete axios.defaults.headers.common['Authorization']
 	const { loginData, onSuccess } = data
 	try {
-		const response = await axios.post('/login', loginData)
+		const response = await axios.post('api/auth/login/', loginData)
 		commit('setUser', response.data)
 		if (onSuccess) onSuccess()
 		commit('clearError', null, {root: true})
