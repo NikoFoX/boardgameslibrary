@@ -1,12 +1,10 @@
 from pprint import pprint
 
 import xmltodict
+import requests
 from django.contrib.auth import get_user_model
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
-
-# Create your models here.
-from pip._vendor import requests
 
 from common.constants import SHORT_STRING, LONG_STRING, MATCH_RESULTS
 

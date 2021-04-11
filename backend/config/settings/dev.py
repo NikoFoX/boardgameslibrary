@@ -1,5 +1,18 @@
 from .base import *
 
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+INSTALLED_APPS += [
+    'corsheaders'
+]
+
+MIDDLEWARE += [
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
 # LOGGER
 # LOGGING = {
 #    'version': 1,

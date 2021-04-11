@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  postgres_db:
+    image: postgres:11
+    volumes:
+      - local_postgres_db:/var/lib/postgresql/data:z
+    container_name: bgl-postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  django:
+    build:
+      context: .
+      dockerfile: ./docker/django/Dockerfile
+    volumes:
+      - .:/app
+    container_name: bgl-django
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres_db
+  frontend:
+    build:
+      context: .
+      dockerfile: ./docker/frontend/Dockerfile
+    volumes:
+    - ./frontend:/usr/src/app
+    - /usr/src/app/node_modules
+    container_name: bgl-frontend
+    expose:
+      - "8080"
+    ports:
+    - "8080:8080"
+
+volumes:
+  local_postgres_db: {}
