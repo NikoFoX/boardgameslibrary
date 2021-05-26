@@ -4,10 +4,14 @@ module.exports = {
 		browser: true,
 		node: true
 	},
-	'extends': ['eslint:recommended', 'plugin:vue/base', 'plugin:vue/essential'],
+	extends: ['plugin:vue/recommended', 'eslint:recommended', 'plugin:vue/base', 'plugin:vue/essential'],
+	parser: "vue-eslint-parser",
 	parserOptions: {
-		parser: 'babel-eslint'
-	},
+    	vueFeatures: {
+			filter: true,
+			interpolationAsNonHTML: false,
+    	}
+  	},
 	plugins: [
 		'vue'
 	],

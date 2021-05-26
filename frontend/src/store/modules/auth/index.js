@@ -5,9 +5,7 @@ import getters from './getters'
 export default {
   namespaced: true,
 	state: {
-  	user: {
-  		authToken: ''
-		}
+		user: {},
 	},
 	mutations: mutations,
 	actions: actions,
