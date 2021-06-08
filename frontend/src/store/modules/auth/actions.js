@@ -34,8 +34,8 @@ const register = async ({ commit }, data) => {
 	sessionStorage.clear()
 	try {
 		const response = await axios.post('api/auth/register/', registerData)
-		if (onSuccess) onSuccess()
 		commit('clearError', null, {root: true})
+		if (onSuccess) onSuccess()
 	} catch (error) {
 		if (onError) onError()
 		if (error.response && [400].includes(error.response.status)) {

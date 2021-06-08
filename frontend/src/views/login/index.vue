@@ -2,127 +2,140 @@
   <div class="login">
     <h3>Board Games Library</h3>
     <v-alert
-      v-if="accountConfirmed"
+      v-if="accountRegistered"
       class="mt-3"
       type="success"
     >
-      Account confirmed. You can now log in.
+      Account registered. You can now log in.
     </v-alert>
-    <v-card
-      raised
+    <v-expansion-panels
+      v-model="openedPanel"
+      mandatory
+      popout
+      hover
       class="login-card"
     >
-      <v-card-title>
-        Login
-      </v-card-title>
-      <div v-if="errors.loginErrors && errors.loginErrors.non_field_errors">
-        <v-alert
-          v-for="([error, errorMsg], index) in Object.entries(errors.loginErrors.non_field_errors)"
-          :key="index"
-          type="error"
-          transition="scale-transition"
-        >
-          {{ errorMsg }}
-        </v-alert>
-      </div>
-      <v-text-field
-        v-model="loginForm.email"
-        prefix=" "
-        placeholder="Email"
-        autofocus
-        prepend-icon="fas fa-at"
-        clearable
-        light
-        :error="errors.loginErrors && errors.loginErrors.email"
-        :error-messages="errors.loginErrors ? errors.loginErrors.email : []"
-        @input="clearError('loginErrors')"
-      />
-      <v-text-field
-        v-model="loginForm.password"
-        type="password"
-        prefix=" "
-        prepend-icon="fas fa-lock"
-        placeholder="Password"
-        clearable
-        light
-        :error="errors.loginErrors && errors.loginErrors.password"
-        :error-messages="errors.loginErrors ? errors.loginErrors.password : []"
-        @input="clearError('loginErrors')"
-      />
-      <v-btn
-        block
-        color="success"
-        :disabled="loginLoading"
-        @click="_login()"
-        @keyup.enter="_login()"
-      >
-        <span v-if="loginLoading">
-          <v-progress-circular indeterminate />
-        </span>
-        <span v-else>LOGIN</span>
-      </v-btn>
-    </v-card>
-    <span class="text-center mt-6 mb-1">OR</span>
-    <v-card
-      raised
-      class="login-card"
-    >
-      <v-card-title>Register</v-card-title>
-      <v-text-field
-        v-model="registerForm.username"
-        prefix=" "
-        placeholder="Username"
-        prepend-icon="fas fa-sign-in-alt"
-        clearable
-        light
-        :error="errors.registerErrors && errors.registerErrors.username"
-        :error-messages="errors.registerErrors ? errors.registerErrors.username : []"
-        @input="clearError('registerErrors')"
-      />
-      <v-text-field
-        v-model="registerForm.email"
-        prefix=" "
-        placeholder="Email"
-        prepend-icon="fas fa-at"
-        clearable
-        light
-        :error="errors.registerErrors && errors.registerErrors.email"
-        :error-messages="errors.registerErrors ? errors.registerErrors.email : []"
-        @input="clearError('registerErrors')"
-      />
-      <v-text-field
-        v-model="registerForm.password1"
-        type="password"
-        prefix=" "
-        prepend-icon="fas fa-lock"
-        placeholder="Password"
-        clearable
-        light
-        :error="errors.registerErrors && errors.registerErrors.password1"
-        :error-messages="errors.registerErrors ? errors.registerErrors.password1 : []"
-        @input="clearError('registerErrors')"
-      />
-      <v-text-field
-        v-model="registerForm.password2"
-        type="password"
-        prefix=" "
-        prepend-icon="fas fa-lock"
-        placeholder="Password"
-        clearable
-        light
-        :error="errors.registerErrors && errors.registerErrors.password2"
-        :error-messages="errors.registerErrors ? errors.registerErrors.password2 : []"
-        @input="clearError('registerErrors')"
-      />
-      <v-btn
-        block
-        color="primary"
-        :disabled="registerLoading"
-        @click="_register()"
-      >
-        REGISTER
-      </v-btn>
-    </v-card>
+      <v-expansion-panel ripple>
+        <v-expansion-panel-header>
+          <span class="text-center h5">LOGIN</span>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <div v-if="errors.loginErrors && errors.loginErrors.non_field_errors">
+            <v-alert
+              v-for="([error, errorMsg], index) in Object.entries(errors.loginErrors.non_field_errors)"
+              :key="index"
+              type="error"
+              transition="scale-transition"
+            >
+              {{ errorMsg }}
+            </v-alert>
+          </div>
+          <v-text-field
+            v-model="loginForm.email"
+            prefix=" "
+            placeholder="Email"
+            autofocus
+            prepend-icon="fas fa-at"
+            clearable
+            light
+            :error="!!(errors.loginErrors && errors.loginErrors.email)"
+            :error-messages="errors.loginErrors ? errors.loginErrors.email : []"
+            @input="clearError('loginErrors')"
+          />
+          <v-text-field
+            v-model="loginForm.password"
+            type="password"
+            prefix=" "
+            prepend-icon="fas fa-lock"
+            placeholder="Password"
+            clearable
+            light
+            :error="!!(errors.loginErrors && errors.loginErrors.password)"
+            :error-messages="errors.loginErrors ? errors.loginErrors.password : []"
+            @input="clearError('loginErrors')"
+          />
+          <v-btn
+            block
+            color="success"
+            :disabled="loginLoading"
+            @click="_login()"
+            @keyup.enter="_login()"
+          >
+            <v-progress-circular
+              v-if="loginLoading"
+              indeterminate
+            />
+            <span v-else>LOGIN</span>
+          </v-btn>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <v-expansion-panel />
+      <v-expansion-panel ripple>
+        <v-expansion-panel-header>
+          <span class="text-center h5">REGISTER</span>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <v-text-field
+            v-model="registerForm.username"
+            prefix=" "
+            placeholder="Username"
+            prepend-icon="fas fa-sign-in-alt"
+            clearable
+            light
+            :error="!!(errors.registerErrors && errors.registerErrors.username)"
+            :error-messages="errors.registerErrors ? errors.registerErrors.username : []"
+            @input="clearError('registerErrors')"
+          />
+          <v-text-field
+            v-model="registerForm.email"
+            prefix=" "
+            placeholder="Email"
+            prepend-icon="fas fa-at"
+            clearable
+            light
+            :error="!!(errors.registerErrors && errors.registerErrors.email)"
+            :error-messages="errors.registerErrors ? errors.registerErrors.email : []"
+            @input="clearError('registerErrors')"
+          />
+          <v-text-field
+            v-model="registerForm.password1"
+            type="password"
+            prefix=" "
+            prepend-icon="fas fa-lock"
+            placeholder="Password"
+            clearable
+            light
+            :error="!!(errors.registerErrors && errors.registerErrors.password1)"
+            :error-messages="errors.registerErrors ? errors.registerErrors.password1 : []"
+            @input="clearError('registerErrors')"
+          />
+          <v-text-field
+            v-model="registerForm.password2"
+            type="password"
+            prefix=" "
+            prepend-icon="fas fa-lock"
+            placeholder="Password"
+            clearable
+            light
+            :error="!!(errors.registerErrors && errors.registerErrors.password2)"
+            :error-messages="errors.registerErrors ? errors.registerErrors.password2 : []"
+            @input="clearError('registerErrors')"
+          />
+          <v-btn
+            block
+            color="primary"
+            :disabled="registerLoading"
+            @click="_register()"
+          >
+            <v-progress-circular
+              v-if="registerLoading"
+              indeterminate
+            />
+            <span v-else>REGISTER</span>
+          </v-btn>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
   </div>
 </template>
 
@@ -144,14 +157,13 @@ export default {
       password1: '',
       password2: ''
     },
+    openedPanel: '',
     loginLoading: false,
     registerLoading: false,
+    accountRegistered: false
 	}),
 	computed: {
 		...mapGetters(['auth/user', 'errors']),
-    accountConfirmed () {
-      return this.$route.query.confirmed === 'true'
-    }
 	},
 	methods: {
 		...mapMutations(['clearError']),
@@ -169,9 +181,13 @@ export default {
 			})
 		},
     _register() {
-		  this.registerLoading = true
+      this.registerLoading = true
       this.register({
         registerData: this.registerForm,
+        onSuccess: () => {
+          this.accountRegistered = true
+          this.openedPanel = 0 // login panel is 0; register is 2
+        },
         onError: () => {
           this.registerLoading = false
         }
