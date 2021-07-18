@@ -3,4 +3,5 @@ ENV   PYTHONUNBUFFERED 1
 RUN mkdir /app
 COPY backend/requirements/base.txt /app/
 RUN pip install -r app/base.txt
-COPY . /app
+WORKDIR /app
+COPY ./backend .

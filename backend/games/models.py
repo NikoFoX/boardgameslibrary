@@ -48,22 +48,22 @@ class OriginalGame(LogModel):
 
 
 class Game(LogModel):
-    game = models.ForeignKey(OriginalGame, on_delete=models.CASCADE, related_name='games')
+    original_game = models.ForeignKey(OriginalGame, on_delete=models.CASCADE, related_name='games')
     user = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='games')
 
     class Meta:
-        ordering = ('game__title', )
+        ordering = ('original_game__title', )
 
     def __str__(self):
-        return f'{self.game.title} ({self.user.username})'
+        return self.original_game.title
 
     @property
     def title(self):
-        return self.game.title
+        return self.original_game.title
 
     @property
     def external_id(self):
-        return self.game.external_id
+        return self.original_game.external_id
 
 
 class Match(LogModel):
@@ -74,5 +74,12 @@ class Match(LogModel):
     scenario = models.CharField(max_length=LONG_STRING, null=True, blank=True)
     points = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
 
+    class Meta:
+        verbose_name_plural = "matches"
+
     def __str__(self):
         return f'{self.get_result_display()} - {self.game.title}'
+
+    @property
+    def user(self):
+        return self.user
