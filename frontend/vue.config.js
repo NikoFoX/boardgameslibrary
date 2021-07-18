@@ -11,9 +11,6 @@ module.exports = {
 		}
 	},
 	productionSourceMap: true,
-	// css: {
-	// 	sourceMaps: true
-	// },
 	configureWebpack: {
 		devtool: 'source-map'
 	},
