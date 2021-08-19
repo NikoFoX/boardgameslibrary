@@ -8,7 +8,8 @@ module.exports = {
 		proxy: 'http://localhost:8000',
 		watchOptions: {
 			poll: true
-		}
+		},
+		historyApiFallback: true
 	},
 	productionSourceMap: true,
 	configureWebpack: {
