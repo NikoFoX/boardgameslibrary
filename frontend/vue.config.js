@@ -1,11 +1,9 @@
 module.exports = {
 	'transpileDependencies': ['vuetify'],
-	publicPath: 'http://0.0.0.0:8080',
+	publicPath: 'http://localhost:8080',
 	devServer: {
-		public: '0.0.0.0',
+		public: 'localhost',
 		host: '0.0.0.0',
-		port: '8080',
-		proxy: 'http://localhost:8000',
 		watchOptions: {
 			poll: true
 		},
