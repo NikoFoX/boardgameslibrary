@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import store from '@/store'
 // components
 import Account from '@/components/Account'
-import Login from '@/views/login'
+import Login from '@/views/auth/Login'
 import Library from '@/views/library/list/GameList'
 import Matches from '@/views/matches/list/Matches'
 import GameDetails from '@/views/library/edit/GameDetails'

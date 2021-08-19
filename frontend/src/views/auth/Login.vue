@@ -41,6 +41,7 @@
             :error="!!(errors.loginErrors && errors.loginErrors.email)"
             :error-messages="errors.loginErrors ? errors.loginErrors.email : []"
             @input="clearError('loginErrors')"
+            @keydown.enter="_login()"
           />
           <v-text-field
             v-model="loginForm.password"
@@ -53,13 +54,13 @@
             :error="!!(errors.loginErrors && errors.loginErrors.password)"
             :error-messages="errors.loginErrors ? errors.loginErrors.password : []"
             @input="clearError('loginErrors')"
+            @keydown.enter="_login()"
           />
           <v-btn
             block
             color="success"
             :disabled="loginLoading"
             @click="_login()"
-            @keyup.enter="_login()"
           >
             <v-progress-circular
               v-if="loginLoading"
