@@ -15,7 +15,7 @@ const clearErrors = (state) => {
 
 
 const clearFoundGames = (state) => {
-	state.foundGames = null
+	state.foundGames = []
 }
 
 const clearFoundGame = (state) => {

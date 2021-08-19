@@ -18,30 +18,13 @@ const addGame = async ({ commit, dispatch }, data) => {
 }
 
 const findGames = async ({ state, commit }, gameTitle) => {
-	const api = `https://www.boardgamegeek.com/xmlapi2/search?type=boardgame&query=${gameTitle}`
 	try {
-		const response = await originalAxios.get(api)
-		let foundGames = xmljs.xml2json(response.data, {
-			compact: true
-		})
-		foundGames = JSON.parse(foundGames)
-		if (foundGames.items) foundGames = foundGames.items.item
-		else foundGames = null
-		if (foundGames) {
-			let games = {}
-			foundGames.forEach((game) => {
-				games[game._attributes.id] = {
-					name: game.name._attributes.value,
-					id: game._attributes.id
-				}
-			})
-			state.foundGames = games
-		} else {
-			state.errors['foundGames'] = 'No games found'
-		}
+		const response = await axios.get(`api/games/game/find_game/?title=${gameTitle}`)
+		state.foundGames = response.data
 	} catch (error) {
 		console.log('Error finding games')
 		console.log(error)
+		commit("setError", {foundGames: "No games found"}, {root: true})
 	}
 }
 

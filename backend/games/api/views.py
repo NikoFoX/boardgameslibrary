@@ -1,7 +1,9 @@
 from rest_framework import status
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
+from common.utils import get_games_from_source_by_title
 from games.api.serializers import GameSerializer, MatchSerializer
 from games.models import Game, OriginalGame
 
@@ -36,6 +38,17 @@ class GameViewSet(ModelViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(status=status.HTTP_201_CREATED, data=serializer.data)
+
+    @action(["GET"], detail=False)
+    def find_game(self, request, **kwargs):
+        title = request.query_params.get("title")
+        if not title:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data="Please provide game title")
+        games_list = get_games_from_source_by_title(title)
+        if games_list:
+            return Response(status=status.HTTP_200_OK, data=games_list)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 class MatchViewSet(ModelViewSet):

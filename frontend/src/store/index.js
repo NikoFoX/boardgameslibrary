@@ -14,7 +14,7 @@ const initialStoreState = {
 	},
 	matches: [],
 	errors: {},
-	foundGames: null,
+	foundGames: [],
 	foundGame: null
 }
 
