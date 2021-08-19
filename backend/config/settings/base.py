@@ -40,7 +40,8 @@ DJANGO_APPS = [
     'dj_rest_auth.registration',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount'
+    'allauth.socialaccount',
+    'drf_yasg',
 ]
 
 LOCAL_APPS = [
