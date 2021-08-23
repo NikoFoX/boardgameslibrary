@@ -17,7 +17,7 @@ class OriginalGameAdmin(admin.ModelAdmin):
 
 @admin.register(Game)
 class GameAdmin(admin.ModelAdmin):
-    list_display = ['title', 'user']
+    list_display = ['title', 'original_game', 'user']
     readonly_fields = ['created_at', 'modified_at']
     search_fields = ['original_game__title', 'user__name']
     raw_id_fields = ['original_game', 'user']

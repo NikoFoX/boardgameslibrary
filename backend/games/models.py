@@ -39,10 +39,16 @@ class OriginalGame(LogModel):
         return game_json
 
     @staticmethod
-    def create_game_from_game_json(name, external_id):
+    def create_game_from_game_json(external_id):
+        # get original game data from bgg and create new OriginalGame
+
         game_json = OriginalGame.get_game_json_from_source(external_id)
-        game = OriginalGame(title=name, external_id=external_id,
-                            image=game_json.get('image'), thumbnail=game_json.get('thumbnail'))
+        game = OriginalGame(
+            title=game_json.get('name')[0]['@value'],
+            external_id=external_id,
+            image=game_json.get('image'),
+            thumbnail=game_json.get('thumbnail')
+        )
         game.save()
         return game
 
