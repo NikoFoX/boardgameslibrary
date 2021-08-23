@@ -62,6 +62,7 @@
           <v-text-field
             v-model="newGameTitle"
             label="Game title"
+            autofocus
             clearable
             @keydown.enter="_findGames()"
             @click:clear="clearSearch()"
