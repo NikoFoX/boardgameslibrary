@@ -1,41 +1,71 @@
 <template>
   <v-card>
-    <v-app-bar color="dark" dark>
-      <v-app-bar-nav-icon color="primary" @click="drawer = true"></v-app-bar-nav-icon>
-      <v-spacer></v-spacer>
-      <router-link tag="span" :to="{ name: 'Matches' }">Board Games Library</router-link>
+    <v-app-bar
+      color="dark"
+      dark
+    >
+      <v-app-bar-nav-icon
+        color="primary"
+        @click="drawer = true"
+      />
+      <v-spacer />
+      <router-link
+        tag="span"
+        :to="{ name: 'Matches' }"
+      >
+        Board Games Library
+      </router-link>
     </v-app-bar>
     <v-navigation-drawer
       v-if="userLogged"
+      ref="drawer"
+      v-model="drawer"
       app
       dark
       disable-route-watcher
       class="p-1"
-      v-model="drawer"
-      ref="drawer"
     >
       <div class="text-center mb-3">
         <!-- <template v-if="drawerOpen()"> -->
         <v-card @click="goToAccount()">
           <v-card-text :class="!drawerOpen() ? 'p-2' : ''">
             <!-- <v-avatar color="red">{{ user.initials }}</v-avatar> -->
-            <span v-if="drawerOpen()" class="text-light">{{ user.username }}</span>
+            <span
+              v-if="drawerOpen()"
+              class="text-light"
+            >{{ user.username }}</span>
           </v-card-text>
         </v-card>
       </div>
-      <v-list dark elevation="10">
+      <v-list
+        dark
+        elevation="10"
+      >
         <v-list-item-group>
-          <v-list-item :to="{ name: 'Matches' }">Matches</v-list-item>
-          <v-list-item :to="{ name: 'Library' }">Library</v-list-item>
-          <v-list-item @click="showNewGameModal()">Add new game</v-list-item>
+          <v-list-item :to="{ name: 'Matches' }">
+            Matches
+          </v-list-item>
+          <v-list-item :to="{ name: 'Library' }">
+            Library
+          </v-list-item>
+          <v-list-item @click="showNewGameModal()">
+            Add new game
+          </v-list-item>
         </v-list-item-group>
       </v-list>
       <!-- Footer -->
       <template v-slot:append>
-        <v-btn block color="red" @click="logout()" dark>Logout</v-btn>
+        <v-btn
+          block
+          color="red"
+          dark
+          @click="logout()"
+        >
+          Logout
+        </v-btn>
       </template>
     </v-navigation-drawer>
-    <new-game-modal></new-game-modal>
+    <new-game-modal />
   </v-card>
 </template>
 
