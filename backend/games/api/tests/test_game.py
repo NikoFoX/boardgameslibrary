@@ -3,20 +3,16 @@ import os
 from pathlib import Path
 from unittest.mock import patch, Mock
 
-from django.http import HttpResponse
+import responses
+from django.conf import settings
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 
 from common.factories import UserFactory, OriginalGameFactory, GameFactory
+from common.utils import get_data_from_file
 from games.models import OriginalGame, Game
-
-
-class MockedResponse(object):
-    def __init__(self, content, status_code):
-        self.content = content
-        self.status_code = status_code
 
 
 class GameTestCase(TestCase):
@@ -37,117 +33,95 @@ class GameTestCase(TestCase):
         self.assertEqual(0, OriginalGame.objects.count())
         self.assertEqual(0, Game.objects.count())
 
-        with patch('games.models.requests.get') as mock_get:
-            response = self.client.post(reverse('api_games:games-list'),
-                                        content_type='application/json')
+        response = self.client.post(reverse('api_games:games-list'),
+                                    content_type='application/json')
 
-            self.assertEqual(400, response.status_code)
-            # Request for game data to bgg was made
-            mock_get.assert_not_called()
+        self.assertEqual(400, response.status_code)
 
         self.assertEqual(0, OriginalGame.objects.count())
         self.assertEqual(0, Game.objects.count())
 
-    def test_create_new_game_new_original_game(self):
-        """
-        Tests creating new game for user when game of same external ID doesn't exist in db (OriginalGame).
-        Creates OriginalGame from received bgg data and Game for user.
-        """
-        get_game_terraforming_mars_response = MockedResponse(status_code=200, content=self.get_game_terraforming_mars_content)
+    def test_create_new_game(self):
+        original_game = OriginalGameFactory()
 
         new_game_data = {
-            'external_id': '167791'
+            'original_game': original_game.id,
+            'user': self.user.id,
         }
 
-        self.assertEqual(0, OriginalGame.objects.count())
+        self.assertEqual(1, OriginalGame.objects.count())
         self.assertEqual(0, Game.objects.count())
 
-        with patch('games.models.requests.get', Mock(return_value=get_game_terraforming_mars_response)) as mock_get:
-            response = self.client.post(reverse('api_games:games-list'), data=json.dumps(new_game_data),
-                                        content_type='application/json')
-
-            self.assertEqual(201, response.status_code)
-            # Request for game data to bgg was made
-            mock_get.assert_called_once()
-
-        self.assertEqual(1, OriginalGame.objects.count())
-        original_game = OriginalGame.objects.first()
-        self.assertEqual(1, Game.objects.count())
-        user_game = Game.objects.first()
-        self.assertEqual(original_game, user_game.original_game)
-        self.assertEqual('Terraforming Mars', user_game.title)
-        self.assertEqual('167791', user_game.external_id)
-        self.assertEqual(self.user, user_game.user)
-        self.assertEqual('https://cf.geekdo-images.com/wg9oOLcsKvDesSUdZQ4rxw__thumb/img/BTxqxgYay5tHJfVoJ2NF5g43_gA=/fit-in/200x150/filters:strip_icc()/pic3536616.jpg',
-                         original_game.thumbnail)
-        self.assertEqual('https://cf.geekdo-images.com/wg9oOLcsKvDesSUdZQ4rxw__original/img/thIqWDnH9utKuoKVEUqveDixprI=/0x0/filters:format(jpeg)/pic3536616.jpg',
-                         original_game.image)
-
-    def test_create_new_game_existing_original_game(self):
-        """
-        Tests creating new game for user when game of same external ID already exist in db (OriginalGame).
-        Creates only Game for user with existing OriginalGame.
-        """
-        original_game = OriginalGameFactory(title="Terraforming Mars", external_id=167791)
-        other_user_game = GameFactory(original_game=original_game, user=UserFactory(username="user_0"))
-
-        new_game_data = {
-            'external_id': '167791'
-        }
+        response = self.client.post(reverse('api_games:games-list'), data=json.dumps(new_game_data),
+                                    content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         self.assertEqual(1, OriginalGame.objects.count())
         self.assertEqual(1, Game.objects.count())
 
-        with patch('games.models.requests.get') as mock_get:
-            response = self.client.post(reverse('api_games:games-list'), data=json.dumps(new_game_data),
-                                        content_type='application/json')
-            self.assertEqual(201, response.status_code)
-            # Did not request for game data from bgg
-            mock_get.assert_not_called()
-
-        self.assertEqual(1, OriginalGame.objects.count())
-        self.assertEqual(2, Game.objects.count())
         user_game = Game.objects.get(id=response.json()["id"])
-        self.assertEqual(original_game, user_game.original_game)
-        self.assertEqual('Terraforming Mars', user_game.title)
-        self.assertEqual('167791', user_game.external_id)
-        self.assertEqual(self.user, user_game.user)
+        self.assertEqual(user_game.original_game, original_game)
+        self.assertEqual(user_game.user, self.user)
+
+        game_json = response.json()
+
+        self.assertEqual(
+            game_json,
+            {
+                "id": user_game.id,
+                "original_game": original_game.id,
+                "user": self.user.id,
+                "title": user_game.title,
+                "image": user_game.image,
+                "thumbnail": user_game.thumbnail,
+            }
+        )
 
     def test_remove_game(self):
         """
         Tests removing game from user.
         OriginalGame will not be removed.
         """
-        self.game = OriginalGameFactory(title="Terraforming Mars")
-        self.user_game = GameFactory(original_game=self.game, user=self.user)
+        original_game = OriginalGameFactory()
+        user_game = GameFactory(original_game=original_game, user=self.user)
 
         self.assertEqual(1, OriginalGame.objects.count())
         self.assertEqual(1, Game.objects.count())
 
-        response = self.client.delete(reverse('api_games:games-detail', kwargs={'pk': self.user_game.id}))
+        #
+
+        response = self.client.delete(reverse('api_games:games-detail', kwargs={'pk': user_game.id}))
         self.assertEqual(204, response.status_code)
 
         self.assertEqual(1, OriginalGame.objects.count())
         self.assertEqual(0, Game.objects.count())
-        self.assertEqual(0, self.user.games.count())
 
-    def test_find_game(self):
+    @responses.activate
+    def test_find_games_by_title(self):
         """
         Tests returning games list found by given title
         """
 
-        this_dir = Path(__file__).parent
-        with open(os.path.join(this_dir, f'test_data/bgg_response_search_boardgame_terraform.xml'), 'r',
-                  encoding="utf-8") as xml_file:
-            search_terraform_response_content = xml_file.read()
+        dir = Path(__file__).parent.joinpath("test_data")
+        games_list_xml = get_data_from_file(dir, "bgg_response_search_boardgame_terraform.xml")
 
-        search_terraform_response = MockedResponse(
-            content=search_terraform_response_content,
-            status_code=status.HTTP_200_OK
+        title = "Terraform"
+
+        responses.add(
+            method="GET",
+            url=settings.BOARD_GAME_GEEK_GAMES_LIST_URL.format(title=title),
+            body=games_list_xml,
+            status=status.HTTP_200_OK,
+            content_type="text/xml",
         )
 
-        with patch("games.utils.requests.get", Mock(return_value=search_terraform_response)):
-            response = self.client.get(reverse("api_games:games-find-game") + "?title={'Terraform'}")
+        #
+
+        response = self.client.get(reverse("api_games:games-find-games"),
+           data={
+               "title": title,
+           }
+        )
 
         self.assertEqual(status.HTTP_200_OK, response.status_code)
 

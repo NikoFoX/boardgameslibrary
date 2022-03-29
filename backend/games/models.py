@@ -2,9 +2,10 @@ from pprint import pprint
 
 import xmltodict
 import requests
-from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
+from uuid import uuid4
 
 from common.constants import SHORT_STRING, LONG_STRING, MATCH_RESULTS
 
@@ -12,6 +13,7 @@ from common.constants import SHORT_STRING, LONG_STRING, MATCH_RESULTS
 class LogModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    uuid = models.UUIDField(default=uuid4, unique=True, verbose_name="UUID")
 
     class Meta:
         abstract = True
@@ -25,31 +27,34 @@ class OriginalGame(LogModel):
     external_id = models.CharField(max_length=SHORT_STRING)
 
     class Meta:
-        ordering = ('title', )
+        ordering = ('title', 'id')
 
     def __str__(self):
         return f'{self.title}'
 
     @staticmethod
-    def get_game_json_from_source(external_id):
-        url = f'https://www.boardgamegeek.com/xmlapi2/thing?id={external_id}'
+    def get_game_data_from_source(external_id):
+
+        url = settings.BOARD_GAME_GEEK_GAME_DATA_URL.format(external_id=external_id)
         response = requests.get(url)
-        game_json = xmltodict.parse(response.content)
-        game_json = game_json['items']['item']
-        return game_json
+        game_data= xmltodict.parse(response.content)
+        game_data = game_data['items']['item']
+
+        return game_data
 
     @staticmethod
-    def create_game_from_game_json(external_id):
+    def create_original_game_from_external_id(external_id):
         # get original game data from bgg and create new OriginalGame
 
-        game_json = OriginalGame.get_game_json_from_source(external_id)
-        game = OriginalGame(
+        game_json = OriginalGame.get_game_data_from_source(external_id)
+
+        game = OriginalGame.objects.create(
             title=game_json.get('name')[0]['@value'],
             external_id=external_id,
             image=game_json.get('image'),
             thumbnail=game_json.get('thumbnail')
         )
-        game.save()
+
         return game
 
 
@@ -58,14 +63,22 @@ class Game(LogModel):
     user = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='games')
 
     class Meta:
-        ordering = ('original_game__title', )
+        ordering = ('original_game__title', 'id')
 
     def __str__(self):
-        return self.original_game.title
+        return f"{self.original_game.title} user game"
 
     @property
     def title(self):
         return self.original_game.title
+
+    @property
+    def image(self):
+        return self.original_game.image
+
+    @property
+    def thumbnail(self):
+        return self.original_game.thumbnail
 
     @property
     def external_id(self):

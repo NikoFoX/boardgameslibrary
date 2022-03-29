@@ -161,3 +161,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 SITE_ID = 1
+
+BOARD_GAME_GEEK_GAME_DATA_URL = "https://www.boardgamegeek.com/xmlapi2/thing?id={external_id}"
+BOARD_GAME_GEEK_GAMES_LIST_URL = "https://www.boardgamegeek.com/xmlapi2/search?type=boardgame&query={title}"

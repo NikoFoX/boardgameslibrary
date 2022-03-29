@@ -1,18 +1,19 @@
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from games.utils import get_games_from_source_by_title
-from games.api.serializers import GameSerializer, MatchSerializer
+from games.api.serializers import GameSerializer, MatchSerializer, OriginalGameSerializer
 from games.models import Game, OriginalGame
 
 
-class GameViewSet(ModelViewSet):
-    serializer_class = GameSerializer
+class OriginalGameViewSet(viewsets.GenericViewSet, viewsets.mixins.RetrieveModelMixin, viewsets.mixins.CreateModelMixin):
+    serializer_class = OriginalGameSerializer
+    lookup_field = "external_id"
 
     def get_queryset(self):
-        return Game.objects.filter(user=self.request.user)
+        return OriginalGame.objects.all()
 
     def create(self, request, *args, **kwargs):
         data = request.data
@@ -24,20 +25,21 @@ class GameViewSet(ModelViewSet):
         try:
             original_game = OriginalGame.objects.get(external_id=external_id)
         except OriginalGame.DoesNotExist:
-            original_game = OriginalGame.create_game_from_game_json(external_id=external_id)
+            original_game = OriginalGame.create_original_game_from_external_id(external_id=external_id)
 
-        game_data = {
-            'original_game_id': original_game.id,
-            'user_id': request.user.id,
-        }
+        serializer = self.get_serializer(instance=original_game)
 
-        serializer = self.get_serializer(data=game_data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
         return Response(status=status.HTTP_201_CREATED, data=serializer.data)
 
+
+class GameViewSet(ModelViewSet):
+    serializer_class = GameSerializer
+
+    def get_queryset(self):
+        return Game.objects.filter(user=self.request.user)
+
     @action(["GET"], detail=False)
-    def find_game(self, request, **kwargs):
+    def find_games(self, request, **kwargs):
         title = request.query_params.get("title")
         if not title:
             return Response(status=status.HTTP_400_BAD_REQUEST, data="Please provide game title")

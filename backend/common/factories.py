@@ -22,7 +22,7 @@ class UserFactory(django.DjangoModelFactory):
 
 class OriginalGameFactory(django.DjangoModelFactory):
     title = fake_game_name()
-    external_id = random.randint(1, 10000)
+    external_id = faker.word()
 
     class Meta:
         model = OriginalGame

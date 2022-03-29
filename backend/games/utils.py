@@ -1,11 +1,11 @@
 import requests
 import xmltodict
+from django.conf import settings
 from rest_framework import status
 
 
 def get_games_from_source_by_title(title):
-    url = "https://www.boardgamegeek.com/xmlapi2/search?type=boardgame&query="
-    url += title
+    url = settings.BOARD_GAME_GEEK_GAMES_LIST_URL.format(title=title)
 
     response = requests.get(url)
 
