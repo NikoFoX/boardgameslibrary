@@ -10,12 +10,14 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
   django:
     build:
       context: .
       dockerfile: ./docker/django/Dockerfile
+    command: ./docker/django/setup.sh
     volumes:
-      - .:/app
+      - ./backend:/app
     container_name: bgl-django
     ports:
       - "8000:8000"
@@ -23,23 +25,20 @@ services:
       - "8000"
     depends_on:
       - postgres_db
-      - frontend
-    environment:
-      - DJANGO_SETTINGS_MODULE="config.settings.dev"
-    command:
-      "python manage.py runserver 0.0.0.0:8000"
+
   frontend:
     build:
       context: .
       dockerfile: ./docker/frontend/Dockerfile
+    command: ./docker/frontend_setup.sh
     volumes:
       - ./frontend:/usr/src/app
       - /usr/src/app/node_modules
     container_name: bgl-frontend
     ports:
       - "8080:8080"
-    command:
-      "npm run serve"
+    depends_on:
+      - django
 
 volumes:
   local_postgres_db: {}
